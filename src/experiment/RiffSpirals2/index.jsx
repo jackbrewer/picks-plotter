@@ -1,0 +1,128 @@
+import React from 'react'
+import { arrayOf, bool, number, string } from 'prop-types'
+import { spline } from '@georgedoescode/spline'
+
+import Svg from '../../component/Svg'
+import Group from '../../component/Group'
+
+const RiffSpirals2 = ({
+  colors,
+  containerSize,
+  maxRadius,
+  minRadius,
+  numPoints,
+  offset,
+  staggeredOffset,
+  printSize,
+  rotations,
+  tension,
+  offsets,
+  ...other
+}) => {
+  const c = {
+    x: containerSize / 2,
+    y: containerSize / 2,
+  }
+
+  const initialPoints = 10
+  const incPoints = 2
+
+  const points = []
+
+  let rotationPoints = initialPoints
+  for (let i = 1; i <= rotations; i++) {
+    // console.log({ rotation: i, rotationPoints })
+    const angleStep = (Math.PI * 2) / (rotationPoints * i)
+
+    for (let j = 1; j <= rotationPoints; j++) {
+      const positionOffset =
+        ((maxRadius - minRadius) / rotationPoints) * j + minRadius // + offsets[i % offsets.length]
+      // console.log({ positionOffset })
+      const x = c.x + Math.cos(j * angleStep) * positionOffset
+      const y = c.y + Math.sin(j * angleStep) * positionOffset
+      points.push({ x, y })
+    }
+    rotationPoints += incPoints
+  }
+
+  // const pointsCount = numPoints * rotations
+  // const angleStep = (Math.PI * 2) / numPoints
+  // for (let i = 1; i <= pointsCount; i++) {
+  //   const positionOffset =
+  //     ((maxRadius - minRadius) / pointsCount) * i +
+  //     minRadius +
+  //     offsets[i % offsets.length]
+
+  //   const x = c.x + Math.cos(i * angleStep) * positionOffset
+  //   const y = c.y + Math.sin(i * angleStep) * positionOffset
+  //   points.push({ x, y })
+  // }
+  const pathData = spline(points, tension, false).split(',')
+  pathData.splice(-2, 2).reverse()
+
+  return (
+    <Svg
+      width={`${printSize}mm`}
+      height={`${printSize}mm`}
+      viewBox={`0 0 ${containerSize} ${containerSize}`}
+    >
+      <style>{(() => `path { mix-blend-mode: multiply; }`)()}</style>
+      {colors.map((color, i) => (
+        <Group
+          key={`color:${i}`}
+          label={`${i + 1} ${color}`}
+          {...(!staggeredOffset && {
+            transform: `rotate(${(360 / colors.length) * i + 1}, ${c.x}, ${
+              c.y
+            }) translate(0, ${offset * i})`,
+          })}
+          {...(staggeredOffset && {
+            transform: `rotate(${(360 / colors.length) * i + 1}, ${c.x}, ${
+              c.y
+            }) translate(0, ${offset * (colors.length - i)})`,
+          })}
+        >
+          <path
+            d={pathData}
+            fill="none"
+            stroke={color}
+            strokeWidth="0.4"
+            strokeOpacity="0.8"
+            {...other}
+            transform={`rotate(-90, ${c.x}, ${c.y})`}
+          />
+        </Group>
+      ))}
+    </Svg>
+  )
+}
+
+RiffSpirals2.defaultProps = {
+  colors: ['black'],
+  containerSize: 180,
+  maxRadius: 90,
+  minRadius: 0.5,
+  numPoints: 20,
+  offset: 0.2,
+  printSize: 180,
+  rotations: 69,
+  tension: 1,
+  staggeredOffset: false,
+  offsets: [],
+}
+
+RiffSpirals2.propTypes = {
+  colors: arrayOf(string),
+  containerSize: number,
+  maxRadius: number,
+  minRadius: number,
+  numPoints: number,
+  offset: number,
+  printSize: number,
+  rotations: number,
+  tension: number,
+  staggeredOffset: bool,
+  offsets: arrayOf(number),
+}
+
+export default RiffSpirals2
