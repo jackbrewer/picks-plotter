@@ -1,5 +1,7 @@
 import React from 'react'
-import { func, number } from 'prop-types'
+import { arrayOf, bool, func, number } from 'prop-types'
+
+import shuffleArray from '../../lib/shuffle-array'
 
 import Svg from '../../component/Svg'
 
@@ -11,6 +13,8 @@ const BinaryGrid = ({
   childFunc,
   printWidth,
   printHeight,
+  shuffle,
+  highlights,
 }) => {
   const colWidth = width / cols
   const rowHeight = height / rows
@@ -40,6 +44,8 @@ const BinaryGrid = ({
       return 0
     })
 
+  const readyBytes = shuffle ? shuffleArray([...bytes]) : bytes
+
   return (
     <Svg
       width={`${printWidth}mm`}
@@ -49,7 +55,6 @@ const BinaryGrid = ({
       {[...Array(cols * rows).keys()].map((box, i) => {
         const colNumber = i % cols
         const rowNumber = Math.floor(i / cols)
-
         return (
           <g
             key={i}
@@ -64,8 +69,13 @@ const BinaryGrid = ({
                 i,
                 col: colNumber,
                 row: rowNumber,
-                byte: bytes[i],
+                byte: readyBytes[i],
                 totalCount: totalCells,
+                ...(highlights.length && {
+                  highlight: highlights
+                    .map((i) => parseInt(i, 10))
+                    .includes(bytes.indexOf(readyBytes[i])),
+                }),
               })}
             </g>
           </g>
@@ -79,6 +89,7 @@ BinaryGrid.defaultProps = {
   childFunc: () => {},
   printWidth: 160,
   printHeight: 160,
+  highlights: [],
 }
 
 BinaryGrid.propTypes = {
@@ -89,6 +100,8 @@ BinaryGrid.propTypes = {
   childFunc: func,
   printWidth: number,
   printHeight: number,
+  shuffle: bool,
+  highlights: arrayOf(number),
 }
 
 export default BinaryGrid

@@ -1,10 +1,10 @@
 import React from 'react'
-import { arrayOf, number } from 'prop-types'
+import { arrayOf, bool, number } from 'prop-types'
 
 import Polyline from '../../../component/Polyline'
 import Circle from '../../../component/Circle'
 
-const LineStar = ({ width, height, byte }) => {
+const LineStar = ({ width, height, byte, highlight }) => {
   const size = Math.min(width, height)
   const c = size / 2
   const bitPoints = [
@@ -20,7 +20,13 @@ const LineStar = ({ width, height, byte }) => {
 
   return (
     <g>
-      <Circle r={c} cx={c} cy={c} strokeWidth={0.1} stroke="grey" />
+      <Circle
+        r={c}
+        cx={c}
+        cy={c}
+        strokeWidth={highlight ? 1 : 0.1}
+        stroke={highlight ? 'teal' : 'grey'}
+      />
       {byte.map((bit, i) => {
         if (!bit) return null
         return <Polyline key={i} points={[[c, c], bitPoints[i]]} />
@@ -33,6 +39,7 @@ LineStar.propTypes = {
   byte: arrayOf(number),
   width: number,
   height: number,
+  highlight: bool,
 }
 
 export default LineStar

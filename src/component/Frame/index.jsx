@@ -27,12 +27,22 @@ const Frame = ({ children }) => {
   }
 
   return (
-    <div>
-      <div>{cloneElement(children, { now })}</div>
-      <div>
-        <button onClick={handleRefresh}>Refresh</button>
-        <button onClick={handleSave}>Save</button>
-        <div>{now}</div>
+    <div className="frame">
+      <div className="frame__content">
+        <div className="frame__content-inner">
+          {cloneElement(children, { now })}
+        </div>
+      </div>
+      <div className="frame__actions">
+        <div className="button-group">
+          <button className="button" onClick={handleRefresh}>
+            Refresh
+          </button>
+          <button className="button" onClick={handleSave}>
+            Save
+          </button>
+        </div>
+        <div className="footnote">{now}</div>
       </div>
     </div>
   )

@@ -16,6 +16,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
+    "@chriscourses/perlin-noise": "^1.0.5",
     "@georgedoescode/spline": "^1.0.1",
     "@storybook/addon-actions": "^6.1.14",
     "@storybook/addon-essentials": "^6.1.14",

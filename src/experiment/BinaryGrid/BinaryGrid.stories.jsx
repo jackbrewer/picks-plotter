@@ -5,6 +5,8 @@ import Frame from '../../component/Frame'
 
 import LineStar from './component/LineStar'
 import NestedCircle from './component/NestedCircle'
+import SquareGridEl from './component/SquareGrid'
+import CircleCircleEl from './component/CircleCircle'
 
 export default {
   title: 'Example/BinaryGrid',
@@ -23,7 +25,16 @@ Default.args = {
   height: 400,
   cols: 19,
   rows: 19,
-  childFunc: ({ width, height, i, col, row, totalCount, byte }) => {},
+  childFunc: ({
+    width,
+    height,
+    i,
+    col,
+    row,
+    totalCount,
+    byte,
+    highlight,
+  }) => {},
 }
 
 export const EightBits = Template.bind({})
@@ -32,6 +43,7 @@ EightBits.args = {
   cols: 16,
   rows: 16,
   childFunc: (props) => <LineStar {...props} />,
+  highlights: [0, 16 * 16 - 1],
 }
 
 export const NestedCircles = Template.bind({})
@@ -40,4 +52,22 @@ NestedCircles.args = {
   cols: 16,
   rows: 16,
   childFunc: (props) => <NestedCircle {...props} />,
+}
+
+export const SquareGrid = Template.bind({})
+SquareGrid.args = {
+  ...Default.args,
+  cols: 16,
+  rows: 16,
+  childFunc: (props) => <SquareGridEl {...props} />,
+  highlights: [0, 16 * 16 - 1],
+}
+
+export const CircleCircle = Template.bind({})
+CircleCircle.args = {
+  ...Default.args,
+  cols: 16,
+  rows: 16,
+  childFunc: (props) => <CircleCircleEl {...props} />,
+  highlights: [16 * 16 - 1],
 }

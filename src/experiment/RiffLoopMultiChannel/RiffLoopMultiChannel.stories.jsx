@@ -16,6 +16,9 @@ import letsDanceGuitar from './fixtures/lets-dance/guitar.json'
 export default {
   title: 'Example/RiffLoopMultiChannel',
   component: RiffLoopMultiChannel,
+  argTypes: {
+    data: { control: { type: null } },
+  },
 }
 
 const Template = (args) => (
@@ -26,7 +29,7 @@ const Template = (args) => (
 
 export const Song2 = Template.bind({})
 Song2.args = {
-  audio: '/audio/brightly-wound-loop.mp3',
+  audio: '/audio/song2/drums.mp3',
   data: [song2Drums, song2Bass, song2Guitar, song2Vocals],
   colors: ['cyan', 'yellow', 'magenta', 'black'],
 }

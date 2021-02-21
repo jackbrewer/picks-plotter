@@ -24,6 +24,9 @@ const RiffLoopMultiChannel = ({
 
   return (
     <div>
+      {/* <div className="riff-loop-mask-wrapper">
+        <div className="riff-loop-mask" style={{ animationDuration: '16s' }} />
+      </div> */}
       <Svg
         width={`${printWidth}mm`}
         height={`${printHeight}mm`}
@@ -74,8 +77,10 @@ const RiffLoopMultiChannel = ({
         </Group>
       </Svg>
 
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio src={audio} loop controls />
+      <div className="audio-player">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <audio src={audio} loop controls />
+      </div>
     </div>
   )
 }

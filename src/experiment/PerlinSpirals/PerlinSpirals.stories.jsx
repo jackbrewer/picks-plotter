@@ -1,17 +1,17 @@
 import React from 'react'
 
-import OffsetSpirals from './'
+import PerlinSpirals from './'
 
 import Frame from '../../component/Frame'
 
 export default {
-  title: 'Example/OffsetSpirals',
-  component: OffsetSpirals,
+  title: 'Example/PerlinSpirals',
+  component: PerlinSpirals,
 }
 
 const Template = (args) => (
   <Frame>
-    <OffsetSpirals {...args} />
+    <PerlinSpirals {...args} />
   </Frame>
 )
 
@@ -41,8 +41,8 @@ Large.args = {
   tension: 1,
 }
 
-export const LargeOffset = Template.bind({})
-LargeOffset.args = {
+export const LargePerlin = Template.bind({})
+LargePerlin.args = {
   colors: ['yellow', 'cyan', 'magenta', 'black'],
   containerSize: 360,
   maxRadius: 180,
@@ -52,7 +52,7 @@ LargeOffset.args = {
   printSize: 360,
   rotations: 140,
   tension: 1,
-  staggeredOffset: true,
+  staggeredPerlin: true,
 }
 
 export const Rainbow = Template.bind({})
