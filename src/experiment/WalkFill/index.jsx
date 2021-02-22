@@ -1,5 +1,5 @@
 import React from 'react'
-import { number } from 'prop-types'
+import { arrayOf, number, string } from 'prop-types'
 
 import sample from '../../lib/sample'
 import loopAvailables from './lib/loop-availables'
@@ -8,7 +8,7 @@ import Svg from '../../component/Svg'
 import Group from '../../component/Group'
 import Polyline from '../../component/Polyline'
 
-const getPoints = ({ cols, rows, width, height }) => {
+const getPoints = ({ cols, rows, width, height, colours }) => {
   const colSize = width / (cols - 1)
   const rowSize = height / (rows - 1)
   const availables = [...Array(cols * rows).keys()]
@@ -22,10 +22,10 @@ const getPoints = ({ cols, rows, width, height }) => {
     group: 0,
   })
 
-  const groups = indexedGroups.filter(Boolean).map((indexedGroup, i) => {
+  const groups = indexedGroups.filter(Boolean).map((indexedGroup) => {
     return indexedGroup.map((index) => {
       const x = (index % cols) * colSize
-      const y = Math.floor(index / rows) * rowSize
+      const y = Math.floor(index / cols) * rowSize
       return [x, y]
     })
   })
@@ -34,13 +34,21 @@ const getPoints = ({ cols, rows, width, height }) => {
   // return [groups[0]]
 }
 
-const WalkFill = ({ width, height }) => {
+const WalkFill = ({
+  width,
+  height,
+  cols,
+  rows,
+  printWidth,
+  printHeight,
+  colours,
+}) => {
   const lines = [
     {
       color: 'blue',
       pointsGroups: getPoints({
-        cols: 10,
-        rows: 10,
+        cols,
+        rows,
         width,
         height,
       }),
@@ -48,8 +56,8 @@ const WalkFill = ({ width, height }) => {
     // {
     //   color: 'red',
     //   pointsGroups: getPoints({
-    //     cols: 75,
-    //     rows: 75,
+    //     cols: 51,
+    //     rows: 51,
     //     width,
     //     height,
     //   }),
@@ -58,8 +66,8 @@ const WalkFill = ({ width, height }) => {
 
   return (
     <Svg
-      width={`${width}mm`}
-      height={`${height}mm`}
+      width={`${printWidth}mm`}
+      height={`${printHeight}mm`}
       viewBox={`0 0 ${width} ${height}`}
       // style={{ background: '#222' }}
     >
@@ -70,8 +78,10 @@ const WalkFill = ({ width, height }) => {
             <Polyline
               key={`polyline:${j}`}
               points={points}
-              stroke={line.color || '#fff'}
-              strokeWidth="0.5"
+              stroke={
+                (colours && colours[j % colours.length]) || line.color || '#fff'
+              }
+              strokeWidth="0.2"
               strokeOpacity="0.8"
             />
           ))}
@@ -89,6 +99,11 @@ WalkFill.defaultProps = {
 WalkFill.propTypes = {
   width: number,
   height: number,
+  cols: number,
+  rows: number,
+  printWidth: number,
+  printHeight: number,
+  colours: arrayOf(string),
 }
 
 export default WalkFill

@@ -6,59 +6,46 @@ const generatePossibles = ({ current, rows, cols }) => {
   const possibles = []
   // above (if row exists)
   if (current - rows >= 0) {
-    possibles.push(current - rows)
+    possibles.push(current - cols)
   }
   // below (if row exists)
   if (current + rows < rows * cols) {
-    possibles.push(current + rows)
+    possibles.push(current + cols)
   }
   // before (if on same row)
-  if (Math.floor(current / rows) === Math.floor((current - 1) / rows)) {
+  if (Math.floor(current / cols) === Math.floor((current - 1) / cols)) {
     possibles.push(current - 1)
   }
   // after (if on same row)
-  if (Math.floor(current / rows) === Math.floor((current + 1) / rows)) {
+  if (Math.floor(current / cols) === Math.floor((current + 1) / cols)) {
     possibles.push(current + 1)
   }
   return possibles
 }
 
 const loopAvailables = ({ availables, current, rows, cols, group, groups }) => {
-  if (!availables || availables.length === 0) return groups
+  const remainingAvailables = availables
+  let curr = current
 
-  availables.splice(availables.indexOf(current), 1)
+  while (remainingAvailables.length > 0) {
+    remainingAvailables.splice(remainingAvailables.indexOf(curr), 1)
 
-  const possibles = generatePossibles({ current, rows, cols })
-  const matchIndex = findMatchIndex({
-    availables,
-    possibles: shuffleArray(possibles),
-  })
+    const possibles = generatePossibles({ current: curr, rows, cols })
+    const matchIndex = findMatchIndex({
+      availables: remainingAvailables,
+      possibles: shuffleArray(possibles),
+    })
 
-  // console.log(
-  //   availables.indexOf(current),
-  //   current,
-  //   possibles,
-  //   availables[matchIndex],
-  //   availables
-  // )
-
-  if (matchIndex && matchIndex > -1) {
-    if (!groups[group]) groups[group] = []
-    groups[group].push(availables[matchIndex])
-    current = availables[matchIndex]
-  } else {
-    group++
-    current = sample(availables)
+    if (matchIndex && matchIndex > -1) {
+      if (!groups[group]) groups[group] = []
+      groups[group].push(remainingAvailables[matchIndex])
+      curr = remainingAvailables[matchIndex]
+    } else {
+      group++
+      curr = sample(remainingAvailables)
+    }
   }
-
-  return loopAvailables({
-    availables,
-    current,
-    rows,
-    cols,
-    group,
-    groups,
-  })
+  return groups
 }
 
 export default loopAvailables
