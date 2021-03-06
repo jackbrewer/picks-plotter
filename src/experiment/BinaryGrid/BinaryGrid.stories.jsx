@@ -7,6 +7,7 @@ import LineStar from './component/LineStar'
 import NestedCircle from './component/NestedCircle'
 import SquareGridEl from './component/SquareGrid'
 import CircleCircleEl from './component/CircleCircle'
+import TenBitEl from './component/TenBit'
 
 export default {
   title: 'Example/BinaryGrid',
@@ -14,7 +15,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="BinaryGrid">
     <BinaryGrid {...args} />
   </Frame>
 )
@@ -70,4 +71,14 @@ CircleCircle.args = {
   rows: 16,
   childFunc: (props) => <CircleCircleEl {...props} />,
   highlights: [16 * 16 - 1],
+}
+
+export const TenBit = Template.bind({})
+TenBit.args = {
+  ...Default.args,
+  cols: 32,
+  rows: 32,
+  childFunc: (props) => <TenBitEl {...props} />,
+  highlights: [16 * 16 - 1],
+  bits: 10,
 }

@@ -4,6 +4,8 @@ import RectGrid from './'
 import Frame from '../../component/Frame'
 
 import randomInt from '../../lib/random-int'
+import uniquePermutations from '../../lib/unique-permutations'
+import shuffleArray from '../../lib/shuffle-array'
 
 import Cross from '../../experiment/Squares/component/Cross'
 import Rect from '../../component/Rect'
@@ -18,7 +20,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="RectGrid">
     <RectGrid {...args} />
   </Frame>
 )
@@ -303,36 +305,47 @@ FourBits.args = {
   },
 }
 
-export const EightBits = Template.bind({})
-EightBits.args = {
+const colors = ['blue', 'magenta', 'orange', 'red']
+const wires = 'abcd'
+const wiresPermutations = uniquePermutations(wires)
+
+export const Wires = Template.bind({})
+Wires.args = {
   ...Default.args,
-  cols: 16,
-  rows: 16,
+  width: 400,
+  height: 400,
+  cols: 24,
+  rows: 24,
   childFunc: ({ width, height, i, col, row, totalCount }) => {
-    const size = Math.min(width, height)
-    const c = size / 2
-    const bits = (i >>> 0)
-      .toString(2)
-      .padStart(8, '0')
+    // console.log({ row, col })
+    // console.log({ row, col }, wiresPermutations[row], wiresPermutations[col])
+
+    const starts = wiresPermutations[row]
       .split('')
-      .map((j) => +j)
-    const bitPoints = [
-      [c, 0],
-      [size, 0],
-      [size, c],
-      [size, size],
-      [c, size],
-      [0, size],
-      [0, c],
-      [0, 0],
-    ]
+      .map((_, j) => j * ((height * 0.8) / wires.length) + height * 0.2)
+    const ends = wiresPermutations[col]
+      .split('')
+      .map(
+        (perm) =>
+          wires.indexOf(perm) * ((height * 0.8) / wires.length) + height * 0.2
+      )
 
     return (
       <g>
-        <Circle r={c} cx={c} cy={c} strokeWidth={0.1} stroke="grey" />
-        {bits.map((bit, i) => {
-          if (!bit) return null
-          return <Polyline key={i} points={[[c, c], bitPoints[i]]} />
+        {/* <Circle r={c} cx={c} cy={c} strokeWidth={0.1} stroke="grey" /> */}
+        {wiresPermutations[row].split('').map((color, k) => {
+          return (
+            <Polyline
+              key={k}
+              points={[
+                [width * 0.1, starts[k]],
+                [width * 0.2, starts[k]],
+                [width * 0.8, ends[k]],
+                [width * 0.9, ends[k]],
+              ]}
+              stroke={colors[wires.split('').indexOf(color)]}
+            />
+          )
         })}
       </g>
     )

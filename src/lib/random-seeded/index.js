@@ -40,7 +40,7 @@ const xmur3 = (str) => {
 // }
 
 const randomSeeded = (seed) => {
-  const seedFn = xmur3(seed)
+  const seedFn = xmur3(seed + '')
   const rand = sfc32(seedFn(), seedFn(), seedFn(), seedFn())
   // const rand = mulberry32(seedFn())
   return rand()

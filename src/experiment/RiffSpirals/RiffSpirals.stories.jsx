@@ -13,7 +13,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="RiffSpirals">
     <RiffSpirals {...args} />
   </Frame>
 )

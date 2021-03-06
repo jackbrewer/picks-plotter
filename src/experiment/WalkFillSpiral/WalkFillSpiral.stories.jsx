@@ -11,7 +11,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="WalkFillSpiral">
     <Svg width="160mm" height="160mm" viewBox="0 0 160 160">
       <WalkFillSpiral {...args} />
     </Svg>

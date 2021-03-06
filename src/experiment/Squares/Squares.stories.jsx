@@ -22,7 +22,7 @@ export const Default = Template.bind({})
 Default.args = {}
 
 const SquareTemplate = ({ size, width, height, children }) => (
-  <Frame>
+  <Frame args={args} name="Squares">
     <Svg width={width || size} height={height || size}>
       <Safe width={width || size} height={height || size} safe={0} />
       {children}

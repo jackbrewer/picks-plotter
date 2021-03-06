@@ -1,22 +1,35 @@
 import React from 'react'
 
-import OffsetSpirals from './'
+import UpwardSpirals from './'
 
 import Frame from '../../component/Frame'
 
 export default {
-  title: 'Example/OffsetSpirals',
-  component: OffsetSpirals,
+  title: 'Example/UpwardSpirals',
+  component: UpwardSpirals,
 }
 
 const Template = (args) => (
-  <Frame args={args} name="OffsetSpirals">
-    <OffsetSpirals {...args} />
+  <Frame args={args} name="UpwardSpirals">
+    <UpwardSpirals {...args} />
   </Frame>
 )
 
 export const Default = Template.bind({})
 Default.args = {
+  colors: ['black'],
+  containerSize: 180,
+  maxRadius: 45,
+  minRadius: 25,
+  numPoints: 30,
+  offset: 0,
+  printSize: 180,
+  rotations: 88,
+  tension: 1,
+}
+
+export const Cmyk = Template.bind({})
+Cmyk.args = {
   colors: ['lime', 'yellow', 'cyan', 'magenta'],
   containerSize: 180,
   maxRadius: 90,

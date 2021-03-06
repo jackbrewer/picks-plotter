@@ -1,36 +1,30 @@
 import React, { cloneElement, useState } from 'react'
-import { node } from 'prop-types'
+import { bool, node, object, string } from 'prop-types'
 
-const Frame = ({ children }) => {
+import saveSvg from './lib/save-svg'
+import generateSeed from '../../lib/generate-seed'
+
+const Frame = ({ args, children, seeded, name }) => {
   const [now, setNow] = useState(Date.now())
+  const seed = seeded ? children.props.seed || generateSeed() : false
+  const genTime = new Date(now).toLocaleTimeString()
+
   const handleRefresh = () => {
     setNow(Date.now())
   }
 
-  const handleSave = ({ name }) => {
-    const svgEl = document.querySelector('svg').cloneNode(true)
-    const debugEls = [...svgEl.querySelectorAll('.debug')]
-    debugEls.map((el) => el.parentNode.removeChild(el))
-    svgEl.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-    const svgData = svgEl.outerHTML
-    const preface = '<?xml version="1.0" standalone="no"?>\r\n'
-    const svgBlob = new Blob([preface, svgData], {
-      type: 'image/svg+xml;charset=utf-8',
-    })
-    const svgUrl = URL.createObjectURL(svgBlob)
-    const downloadLink = document.createElement('a')
-    downloadLink.href = svgUrl
-    downloadLink.download = name || Date.now()
-    document.body.appendChild(downloadLink)
-    downloadLink.click()
-    document.body.removeChild(downloadLink)
+  const handleSave = () => {
+    saveSvg({ args, name, seed, genTime })
   }
 
   return (
     <div className="frame">
       <div className="frame__content">
         <div className="frame__content-inner">
-          {cloneElement(children, { now })}
+          {cloneElement(children, {
+            now,
+            ...(seeded && { seed }),
+          })}
         </div>
       </div>
       <div className="frame__actions">
@@ -42,14 +36,21 @@ const Frame = ({ children }) => {
             Save
           </button>
         </div>
-        <div className="footnote">{now}</div>
+        <div className="footnote">
+          {name && `${name} | `}
+          {genTime}
+          {seeded && ` | ${seed}`}
+        </div>
       </div>
     </div>
   )
 }
 
 Frame.propTypes = {
+  args: object,
   children: node,
+  seeded: bool,
+  name: string,
 }
 
 export default Frame

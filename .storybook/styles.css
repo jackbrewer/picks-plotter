@@ -10,7 +10,7 @@
   --color-muted: #555;
 
   --unit: 8px;
-  --radius-standard: var(--unit);
+  --radius-standard: calc(var(--unit) * 0.5);
 }
 
 * {

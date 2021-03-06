@@ -13,7 +13,7 @@ export default {
 const size = 50
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="Spirals">
     <Svg
       width={`${size}mm`}
       height={`${size}mm`}
@@ -81,5 +81,17 @@ Offset.args = {
   numPoints: 30,
   offset: 10,
   rotations: size * 0.6,
+  tension: 1,
+}
+
+const solidSize = 50
+export const Solid = Template.bind({})
+Solid.args = {
+  colors: ['red'],
+  maxRadius: solidSize / 2,
+  minRadius: 0.1,
+  numPoints: 30,
+  offset: 0,
+  rotations: solidSize * 0.8,
   tension: 1,
 }

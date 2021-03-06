@@ -17,7 +17,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="RiffLoop">
     <RiffLoop {...args} />
   </Frame>
 )

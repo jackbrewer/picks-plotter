@@ -15,7 +15,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="PiGrid">
     <PiGrid {...args} />
   </Frame>
 )

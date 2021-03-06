@@ -22,7 +22,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="RiffLoopMultiChannel">
     <RiffLoopMultiChannel {...args} />
   </Frame>
 )

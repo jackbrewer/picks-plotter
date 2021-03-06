@@ -12,7 +12,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="ThermoHygrometer">
     <ThermoHygrometer {...args} />
   </Frame>
 )

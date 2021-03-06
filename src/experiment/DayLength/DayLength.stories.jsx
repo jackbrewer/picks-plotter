@@ -14,7 +14,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="DayLength">
     <DayLength {...args} />
   </Frame>
 )

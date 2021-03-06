@@ -10,7 +10,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame>
+  <Frame args={args} name="Blocks2">
     <Svg width={900} height={900}>
       <Blocks2 {...args} />
     </Svg>

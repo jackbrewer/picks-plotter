@@ -15,6 +15,7 @@ const BinaryGrid = ({
   printHeight,
   shuffle,
   highlights,
+  bits,
 }) => {
   const colWidth = width / cols
   const rowHeight = height / rows
@@ -24,7 +25,7 @@ const BinaryGrid = ({
     .map((i) =>
       (i >>> 0)
         .toString(2)
-        .padStart(8, '0') // TODO: work this out dynamically
+        .padStart(bits, '0')
         .split('')
         .map((j) => +j)
     )
@@ -90,6 +91,7 @@ BinaryGrid.defaultProps = {
   printWidth: 160,
   printHeight: 160,
   highlights: [],
+  bits: 8,
 }
 
 BinaryGrid.propTypes = {
@@ -102,6 +104,7 @@ BinaryGrid.propTypes = {
   printHeight: number,
   shuffle: bool,
   highlights: arrayOf(number),
+  bits: number,
 }
 
 export default BinaryGrid
