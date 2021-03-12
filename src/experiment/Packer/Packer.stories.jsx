@@ -8,11 +8,12 @@ export default {
   component: Packer,
 }
 
-const Template = (args) => (
-  <Frame args={args} name="Packer">
-    <Packer {...args} />
-  </Frame>
-)
+const Template = (args) =>
+  console.log(args) || (
+    <Frame name="Packer">
+      <Packer {...args} />
+    </Frame>
+  )
 
 export const Default = Template.bind({})
 Default.args = {}

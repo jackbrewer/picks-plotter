@@ -13,7 +13,7 @@ export default {
 const size = 50
 
 const Template = (args) => (
-  <Frame args={args} name="Spirals">
+  <Frame name="Spirals">
     <Svg
       width={`${size}mm`}
       height={`${size}mm`}

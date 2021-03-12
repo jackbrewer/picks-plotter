@@ -10,7 +10,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="UpwardSpirals">
+  <Frame name="UpwardSpirals">
     <UpwardSpirals {...args} />
   </Frame>
 )

@@ -9,7 +9,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} seeded name="LineStar">
+  <Frame seeded name="LineStar">
     <LineStar {...args} />
   </Frame>
 )

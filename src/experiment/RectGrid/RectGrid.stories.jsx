@@ -20,7 +20,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="RectGrid">
+  <Frame name="RectGrid">
     <RectGrid {...args} />
   </Frame>
 )

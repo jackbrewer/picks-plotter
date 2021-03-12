@@ -9,7 +9,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="WalkForwards">
+  <Frame name="WalkForwards">
     <WalkForwards {...args} />
   </Frame>
 )

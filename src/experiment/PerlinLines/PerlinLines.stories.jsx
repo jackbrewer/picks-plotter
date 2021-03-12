@@ -10,7 +10,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="PerlinLines">
+  <Frame name="PerlinLines">
     <PerlinLines {...args} />
   </Frame>
 )

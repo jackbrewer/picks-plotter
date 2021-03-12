@@ -15,7 +15,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="BinaryGrid">
+  <Frame name="BinaryGrid">
     <BinaryGrid {...args} />
   </Frame>
 )

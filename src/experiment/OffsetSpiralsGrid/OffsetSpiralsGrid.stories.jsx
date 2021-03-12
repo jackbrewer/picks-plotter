@@ -10,7 +10,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="OffsetSpiralsGrid">
+  <Frame name="OffsetSpiralsGrid">
     <OffsetSpiralsGrid {...args} />
   </Frame>
 )

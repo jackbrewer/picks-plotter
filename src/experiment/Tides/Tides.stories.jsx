@@ -11,7 +11,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="Tides">
+  <Frame name="Tides">
     <Tides {...args} />
   </Frame>
 )

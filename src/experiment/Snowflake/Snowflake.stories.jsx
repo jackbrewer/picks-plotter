@@ -10,7 +10,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="Snowflake">
+  <Frame name="Snowflake">
     {/* <Svg width="100mm" height="100mm" viewBox="0 0 500 500"> */}
     <Snowflake {...args} />
     {/* </Svg> */}

@@ -33,7 +33,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="RiffCircle">
+  <Frame name="RiffCircle" blacklistProps={['dataSets']}>
     <RiffCircle {...args} />
   </Frame>
 )

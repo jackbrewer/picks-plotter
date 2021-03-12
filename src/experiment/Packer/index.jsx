@@ -23,9 +23,9 @@ const Packer = ({ hatch }) => {
   let spaces = new Array(colCount * rowCount).fill(false)
 
   const boxTypes = [
-    { name: '1x6', height: 6, width: 6, maxCount: 3, maxRetries: 30 },
-    { name: '1x6', height: 4, width: 2, maxCount: 3, maxRetries: 30 },
-    { name: '1x6', height: 2, width: 4, maxCount: 3, maxRetries: 30 },
+    { name: '6x6', height: 6, width: 6, maxCount: 3, maxRetries: 30 },
+    { name: '4x2', height: 4, width: 2, maxCount: 3, maxRetries: 30 },
+    { name: '2x4', height: 2, width: 4, maxCount: 3, maxRetries: 30 },
     { name: '1x6', height: 1, width: 6, maxCount: 3, maxRetries: 30 },
     { name: '6x1', height: 6, width: 1, maxCount: 2, maxRetries: 30 },
     { name: '2x2', height: 2, width: 2, maxCount: 8, maxRetries: 30 },

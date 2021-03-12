@@ -1,20 +1,24 @@
 import React, { cloneElement, useState } from 'react'
-import { bool, node, object, string } from 'prop-types'
+import { array, bool, node, object, string } from 'prop-types'
 
 import saveSvg from './lib/save-svg'
 import generateSeed from '../../lib/generate-seed'
 
-const Frame = ({ args, children, seeded, name }) => {
+const Frame = ({ children, seeded, name, blacklistProps }) => {
   const [now, setNow] = useState(Date.now())
   const seed = seeded ? children.props.seed || generateSeed() : false
   const genTime = new Date(now).toLocaleTimeString()
+
+  const childProps = { ...children.props }
+  blacklistProps &&
+    blacklistProps.map((key) => (childProps[key] = 'blacklisted'))
 
   const handleRefresh = () => {
     setNow(Date.now())
   }
 
   const handleSave = () => {
-    saveSvg({ args, name, seed, genTime })
+    saveSvg({ childProps, name, seed, genTime })
   }
 
   return (
@@ -51,6 +55,7 @@ Frame.propTypes = {
   children: node,
   seeded: bool,
   name: string,
+  blacklistProps: array,
 }
 
 export default Frame

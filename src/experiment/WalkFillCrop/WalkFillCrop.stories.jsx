@@ -9,7 +9,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame args={args} name="WalkFillCrop">
+  <Frame name="WalkFillCrop">
     <WalkFillCrop {...args} />
   </Frame>
 )
