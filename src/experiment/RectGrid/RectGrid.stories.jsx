@@ -4,15 +4,15 @@ import RectGrid from './'
 import Frame from '../../component/Frame'
 
 import randomInt from '../../lib/random-int'
+import randomSeeded from '../../lib/random-seeded'
+import mapRange from '../../lib/map-range'
 import uniquePermutations from '../../lib/unique-permutations'
-import shuffleArray from '../../lib/shuffle-array'
 
 import Cross from '../../experiment/Squares/component/Cross'
 import Rect from '../../component/Rect'
 import Polyline from '../../component/Polyline'
 import Blob from '../../component/Blob'
 import Circle from '../../component/Circle'
-import Line from '../../component/Line'
 
 export default {
   title: 'Example/RectGrid',
@@ -20,7 +20,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame name="RectGrid">
+  <Frame name="RectGrid" seeded>
     <RectGrid {...args} />
   </Frame>
 )
@@ -348,6 +348,64 @@ Wires.args = {
           )
         })}
       </g>
+    )
+  },
+}
+
+export const QuarterCircles2 = Template.bind({})
+QuarterCircles2.args = {
+  ...Default.args,
+  childFunc: ({ width, height, i, col, row, totalCount, seed }) => {
+    const m = 0.5
+    const rotation =
+      Math.floor(
+        mapRange({
+          value: randomSeeded(`${seed} ${i}`),
+          min1: 0,
+          max1: 1,
+          min2: 0,
+          max2: 4,
+        })
+      ) * 90
+    return (
+      <>
+        <g transform={`rotate(${rotation}, ${width / 2}, ${height / 2})`}>
+          <path
+            d={[
+              `M ${0}, ${height * (1 - m)}`,
+              `A ${height * m}, ${width * m} 0,0,1 ${width * m}, ${height}`,
+            ]}
+            fill="none"
+            stroke="#000"
+            strokeWidth="1"
+          />
+          <path
+            d={[
+              `M ${0}, ${height * (1 - m)}`,
+              `A ${height * m}, ${width * m} 0,0,1 ${width * m}, ${height}`,
+            ]}
+            fill="none"
+            stroke="#000"
+            strokeWidth="0.5"
+            transform={`rotate(${180}, ${width / 2}, ${height / 2})`}
+          />
+          {[0, 90, 180, 270].map((a) => (
+            <path
+              key={`id-${a}`}
+              d={[
+                `M ${0}, ${height * (1 - 0.25)}`,
+                `A ${height * 0.25}, ${width * 0.25} 0,0,1 ${
+                  width * 0.25
+                }, ${height}`,
+              ]}
+              fill="none"
+              stroke="grey"
+              strokeWidth="0.5"
+              transform={`rotate(${a}, ${width / 2}, ${height / 2})`}
+            />
+          ))}
+        </g>
+      </>
     )
   },
 }

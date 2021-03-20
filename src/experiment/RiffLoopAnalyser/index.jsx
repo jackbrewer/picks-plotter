@@ -115,19 +115,25 @@ const RiffLoopAnalyser = ({
         </g>
       </Svg>
 
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio src={audio} loop controls />
-      <button onClick={handleClick}>Click</button>
-      <textarea value={JSON.stringify(data, '', 2)} />
+      <div className="audio-player">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <audio src={audio} loop controls />
+      </div>
+      <div className="frame__actions">
+        <button className="button" onClick={handleClick}>
+          Click
+        </button>
+        <textarea value={JSON.stringify(data, '', 2)} />
+      </div>
     </div>
   )
 }
 
 RiffLoopAnalyser.defaultProps = {
-  printWidth: 360,
-  printHeight: 100,
-  width: 360,
-  height: 100,
+  printWidth: 180,
+  printHeight: 180,
+  width: 180,
+  height: 180,
   audio: '',
 }
 

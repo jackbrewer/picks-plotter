@@ -40,3 +40,6 @@ Metallica.args = { audio: '/audio/metallica/01.mp3' }
 
 export const MuseHysteria = Template.bind({})
 MuseHysteria.args = { audio: '/audio/hysteria/bass.ogg' }
+
+export const MuseUprising = Template.bind({})
+MuseUprising.args = { audio: '/audio/uprising/uprising.mp3' }

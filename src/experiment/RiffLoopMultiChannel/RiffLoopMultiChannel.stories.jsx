@@ -13,6 +13,12 @@ import letsDanceBacking from './fixtures/lets-dance/backing.json'
 import letsDanceBass from './fixtures/lets-dance/bass.json'
 import letsDanceGuitar from './fixtures/lets-dance/guitar.json'
 
+import UprisingAdditional from './fixtures/uprising/additional.json'
+import UprisingBass from './fixtures/uprising/bass.json'
+import UprisingDrums from './fixtures/uprising/drums.json'
+import UprisingGuitar from './fixtures/uprising/guitar.json'
+import UprisingVocals from './fixtures/uprising/vocals.json'
+
 export default {
   title: 'Example/RiffLoopMultiChannel',
   component: RiffLoopMultiChannel,
@@ -39,4 +45,27 @@ LetsDance.args = {
   audio: '/audio/lets-dance/LetsDance.mp3',
   data: [letsDanceBacking, letsDanceDrums, letsDanceBass, letsDanceGuitar],
   colors: ['yellow', 'magenta', 'cyan', 'black'],
+  innerPadding: 0.1,
+}
+
+export const Uprising = Template.bind({})
+Uprising.args = {
+  audio: '/audio/uprising/uprising.mp3',
+  data: [
+    UprisingBass,
+    UprisingDrums,
+    UprisingGuitar,
+    UprisingVocals,
+    // UprisingAdditional,
+  ],
+  colors: ['teal', 'cyan', 'green', 'black'],
+  multipliers: [1.5, 4, 0.9, 0.8],
+  innerPadding: 0.14,
+  innerRadiusMultiplier: 0.3,
+  lyricRadiusMultiplier: 1.14,
+  lyricsColor: 'white',
+  lyricsSize: 15,
+  lyrics:
+    // 'They   will  not  force     us,   They will stop de-  grading  us,   They will not  con-  trol   us,    We  will  be   vic-    torious',
+    ' THEY WILL NOT FORCE US,  THEY WILL STOP DEGRADING US, THEY WILL NOT CONTROL US,  WE WILL BE VICTORIOUS,      ',
 }

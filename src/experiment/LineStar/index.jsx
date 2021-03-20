@@ -1,7 +1,7 @@
 import React from 'react'
 import { number, string } from 'prop-types'
 
-import randomBm from '../../lib/random-bm'
+// import randomBm from '../../lib/random-bm'
 import randomSeeded from '../../lib/random-seeded'
 import mapRange from '../../lib/map-range'
 

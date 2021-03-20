@@ -1,9 +1,9 @@
 import React from 'react'
 import { arrayOf, bool, func, number } from 'prop-types'
 
-import shuffleArray from '../../lib/shuffle-array'
-
 import Svg from '../../component/Svg'
+
+import generateBinaryBytes from '../../lib/generate-binary-bytes'
 
 const BinaryGrid = ({
   width,
@@ -21,31 +21,12 @@ const BinaryGrid = ({
   const rowHeight = height / rows
   const totalCells = cols * rows
 
-  const bytes = [...Array(totalCells).keys()]
-    .map((i) =>
-      (i >>> 0)
-        .toString(2)
-        .padStart(bits, '0')
-        .split('')
-        .map((j) => +j)
-    )
-    // Sort by number of lines in each circle
-    .sort((a, b) => {
-      const totalA = a.reduce((c, d) => c + d, 0)
-      const totalB = b.reduce((c, d) => c + d, 0)
-      return totalA < totalB ? -1 : 1
-    })
-    // Sort within the line-sorted sections
-    .sort((a, b) => {
-      const totalA = a.reduce((c, d) => c + d, 0)
-      const totalB = b.reduce((c, d) => c + d, 0)
-      if (totalA === totalB) {
-        return a.join('') > b.join('') ? -1 : 1
-      }
-      return 0
-    })
-
-  const readyBytes = shuffle ? shuffleArray([...bytes]) : bytes
+  const bytes = generateBinaryBytes({
+    count: totalCells,
+    bits,
+    sort: true,
+    shuffle,
+  })
 
   return (
     <Svg
@@ -70,13 +51,14 @@ const BinaryGrid = ({
                 i,
                 col: colNumber,
                 row: rowNumber,
-                byte: readyBytes[i],
+                byte: bytes[i],
                 totalCount: totalCells,
-                ...(highlights.length && {
-                  highlight: highlights
-                    .map((i) => parseInt(i, 10))
-                    .includes(bytes.indexOf(readyBytes[i])),
-                }),
+                // Possibly broken since byte refactor
+                // ...(highlights.length && {
+                //   highlight: highlights
+                //     .map((i) => parseInt(i, 10))
+                //     .includes(bytes.indexOf(bytes[i])),
+                // }),
               })}
             </g>
           </g>

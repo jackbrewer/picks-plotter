@@ -15,7 +15,7 @@ const StepSquad = ({ width, height }) => {
     acc += i
   }
 
-  console.log({ count, numbers, acc })
+  // console.log({ count, numbers, acc })
 
   return (
     <Svg

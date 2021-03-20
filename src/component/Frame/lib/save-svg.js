@@ -3,7 +3,7 @@ const saveSvg = ({ args, childProps, name, seed, genTime }) => {
   if (genTime) fileName += ` ${genTime}`
   if (name) fileName = `${name} ${fileName}`
 
-  // Create SVG
+  // Create SVG1
   const svgEl = document.querySelector('svg').cloneNode(true)
 
   // Filter out debug els
@@ -12,29 +12,62 @@ const saveSvg = ({ args, childProps, name, seed, genTime }) => {
 
   const svgNS = 'http://www.w3.org/2000/svg'
 
-  if (seed) {
-    const seedText = document.createElementNS(svgNS, 'text')
-    seedText.setAttributeNS(null, 'x', 0)
-    seedText.setAttributeNS(null, 'y', -10)
-    seedText.setAttributeNS(null, 'font-size', '4')
+  if (seed || childProps) {
+    const propsLayer = document.createElementNS(svgNS, 'g')
+    propsLayer.setAttribute('inkscape:groupmode', 'layer')
+    propsLayer.setAttribute('inkscape:label', '% props')
 
-    const textNode = document.createTextNode(`Seed: ${seed}`)
-    seedText.appendChild(textNode)
-    svgEl.appendChild(seedText)
+    if (seed) {
+      const seedText = document.createElementNS(svgNS, 'text')
+      seedText.setAttributeNS(null, 'x', 0)
+      seedText.setAttributeNS(null, 'y', -10)
+      seedText.setAttributeNS(null, 'font-size', '4')
+
+      const textNode = document.createTextNode(`Seed: ${seed}`)
+      seedText.appendChild(textNode)
+      propsLayer.appendChild(seedText)
+    }
+
+    if (childProps) {
+      const propsText = document.createElementNS(svgNS, 'text')
+      propsText.setAttributeNS(null, 'x', 0)
+      propsText.setAttributeNS(null, 'y', '104%')
+      propsText.setAttributeNS(null, 'font-size', '3')
+
+      const textNode = document.createTextNode(
+        `props: ${JSON.stringify(childProps, '', 2)}`
+      )
+      propsText.appendChild(textNode)
+      propsLayer.appendChild(propsText)
+    }
+
+    svgEl.appendChild(propsLayer)
   }
 
-  if (childProps) {
-    const propsText = document.createElementNS(svgNS, 'text')
-    propsText.setAttributeNS(null, 'x', 0)
-    propsText.setAttributeNS(null, 'y', '104%')
-    propsText.setAttributeNS(null, 'font-size', '3')
+  // TODO: the sorting "works", but the strokes lose their containing nested <g>s
+  // meaning everything appears top-left
+  // Sort strokes into layers by colour
+  // if (true) {
+  //   const layers = {}
+  //   const strokeEls = [...svgEl.querySelectorAll('[stroke]')]
+  //   strokeEls.map((el) => el.parentNode.removeChild(el))
 
-    const textNode = document.createTextNode(
-      `props: ${JSON.stringify(childProps, '', 2)}`
-    )
-    propsText.appendChild(textNode)
-    svgEl.appendChild(propsText)
-  }
+  //   strokeEls.map((el) => {
+  //     const targetLayer = el.getAttribute('stroke')
+  //     if (!layers[targetLayer]) {
+  //       layers[targetLayer] = []
+  //     }
+  //     return layers[targetLayer].push(el) // el.parentNode here started to solve the issue
+  //   })
+  //   Object.entries(layers).map(([k, v], i) => {
+  //     const layer = document.createElementNS(svgNS, 'g')
+  //     layer.setAttribute('inkscape:groupmode', 'layer')
+  //     layer.setAttribute('inkscape:label', `${i + 1} ${k}`)
+  //     v.map((el) => layer.appendChild(el))
+  //     return svgEl.appendChild(layer)
+  //   })
+  //   console.log('Done')
+  // }
 
   svgEl.setAttribute('xmlns', svgNS)
   const svgData = svgEl.outerHTML

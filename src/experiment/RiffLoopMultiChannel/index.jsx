@@ -1,5 +1,5 @@
 import React from 'react'
-import { array, number, object, string } from 'prop-types'
+import { array, arrayOf, number, string } from 'prop-types'
 
 import mapRange from '../../lib/map-range'
 
@@ -16,11 +16,19 @@ const RiffLoopMultiChannel = ({
   printWidth,
   printHeight,
   colors,
+  multipliers,
+  innerPadding,
+  innerRadiusMultiplier,
+  lyricRadiusMultiplier,
+  lyrics,
+  lyricsColor,
+  lyricsSize,
 }) => {
   const c = { x: width / 2, y: height / 2 }
   const d = Math.min(width, height)
-  const r1 = (d / 2) * 0.3
+  const r1 = (d / 2) * innerRadiusMultiplier
   const r2 = d / 2
+  const r1inset = r1 * lyricRadiusMultiplier
 
   return (
     <div>
@@ -39,13 +47,17 @@ const RiffLoopMultiChannel = ({
         {data.map((channel, i) => (
           <Group key={i} label={`${i}`}>
             {channel.map((point, j) => {
-              if (j % 2 !== 0) return null // Only do every 2nd line
+              // if (i !== 3 && j % 2 !== 0) return null // Only do every 2nd line
+              if (i !== 3 && j % 2 !== 0) return null // Special case to make fourth layer more dense
               if (point === 0) return null
+              const multipliedPoint = multipliers[i]
+                ? point * multipliers[i]
+                : point
               const normalisedPoint = mapRange({
-                value: point,
+                value: multipliedPoint,
                 min1: 0,
                 max1: 1,
-                min2: 0.1,
+                min2: innerPadding,
                 max2: 1,
               })
               return (
@@ -72,6 +84,48 @@ const RiffLoopMultiChannel = ({
           </Group>
         ))}
 
+        {/* {lyrics && (
+          <Group label="% Lyrics" transform={`rotate(90, ${c.x}, ${c.y})`}>
+            <defs>
+              <path
+                id="heading-arc"
+                // d='M ' + headingOffset + ' ' + totalR + ' a ' + headingR + ' ' + headingR + ' 0 1 1 ' + headingD + ' 0'
+                // d={`M ${10} ${r2} a ${r1} ${r1} 0 1 1 ${r1 * 2} 0`}
+                d={`
+              M ${c.x - r1inset}, ${c.y}
+              a ${r1inset},${r1inset} 0 1,1 ${r1inset * 2},0
+              a ${r1inset},${r1inset} 0 1,1 ${-1 * r1inset * 2},0
+            `}
+              />
+            </defs>
+            <use xlinkHref="#heading-arc" fill="none" />
+            <text xmlSpace="preserve" fontSize="18">
+              <textPath xlinkHref="#heading-arc">{lyrics}</textPath>
+            </text>
+          </Group>
+        )} */}
+
+        {lyrics && (
+          <Group label="% Lyrics">
+            {lyrics.split('').map((char, i) => (
+              <text
+                key={i}
+                transform={`rotate(${(360 / lyrics.length) * i}, ${c.x}, ${
+                  c.y
+                })`}
+                textAnchor="middle"
+                x={c.x}
+                y={c.y - r1inset}
+                fontFamily="Open Sans, sans-serif"
+                fontSize={lyricsSize}
+                fill={lyricsColor}
+              >
+                {char}
+              </text>
+            ))}
+          </Group>
+        )}
+
         <Group label="% Placeholder">
           <Rect width={width} height={height} />
         </Group>
@@ -92,10 +146,12 @@ RiffLoopMultiChannel.defaultProps = {
   height: 1000,
   data: {},
   audio: '',
-  color1: 'blue',
-  color2: 'red',
-  balanceL: 1,
-  balanceR: 1,
+  innerPadding: 0,
+  multipliers: [],
+  innerRadiusMultiplier: 0.3,
+  lyricRadiusMultiplier: 1,
+  lyricsColor: 'black',
+  lyricsSize: 18,
 }
 
 RiffLoopMultiChannel.propTypes = {
@@ -103,9 +159,16 @@ RiffLoopMultiChannel.propTypes = {
   height: number,
   printWidth: number,
   printHeight: number,
-  data: object,
+  data: array,
   audio: string,
   colors: array,
+  multipliers: arrayOf(number),
+  innerPadding: number,
+  innerRadiusMultiplier: number,
+  lyrics: string,
+  lyricRadiusMultiplier: number,
+  lyricsColor: string,
+  lyricsSize: number,
 }
 
 export default RiffLoopMultiChannel

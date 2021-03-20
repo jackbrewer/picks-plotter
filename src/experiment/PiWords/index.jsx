@@ -47,8 +47,7 @@ const PiWords = ({ width, height, printWidth, printHeight }) => {
   const colWidth = 70
   const rowHeight = 110
 
-  const temp = piWords.split().map((n) => n)
-  console.log(temp.join('​'))
+  // const temp = piWords.split().map((n) => n)
 
   return (
     <Svg
