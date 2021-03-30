@@ -16,7 +16,9 @@ const IsometricCube = ({
   hatchLeftColor,
   hatchRightColor,
   outline,
+  outlineColor,
   inline,
+  inlineColor,
 }) => {
   const width = (height / 2) * Math.sqrt(3)
   return (
@@ -145,6 +147,7 @@ const IsometricCube = ({
           cy={height / 2}
           r={height / 2}
           strokeWidth={1}
+          stroke={outlineColor}
         />
       )}
 
@@ -160,6 +163,7 @@ const IsometricCube = ({
                 [width / 2, height / 2],
               ]}
               strokeWidth={0.8}
+              stroke={inlineColor}
             />
           </g>
         ))}
@@ -171,6 +175,8 @@ IsometricCube.defaultProps = {
   hatchTopColor: 'black',
   hatchLeftColor: 'black',
   hatchRightColor: 'black',
+  outlineColor: 'black',
+  inlineColor: 'black',
   outline: true,
   inline: true,
 }
@@ -186,6 +192,8 @@ IsometricCube.propTypes = {
   hatchTopColor: string,
   hatchLeftColor: string,
   hatchRightColor: string,
+  outlineColor: string,
+  inlineColor: string,
   outline: bool,
   inline: bool,
 }

@@ -34,7 +34,7 @@ export const Hexagons = Template.bind({})
 Hexagons.args = {
   ...Default.args,
   childFunc: ({ width, height, i, totalCount }) => (
-    <Hexagon cx={width / 2} cy={height / 2} r={height / 2} />
+    <Hexagon cx={width / 2} cy={height / 2} r={(height / 2) * 0.8} />
   ),
 }
 

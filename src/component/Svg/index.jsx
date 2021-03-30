@@ -9,7 +9,7 @@ const Svg = ({ children, width, height, viewBox, ...other }) => (
   <svg
     width={width}
     height={height}
-    viewBox={viewBox || `0 0 ${width} ${height}`}
+    viewBox={viewBox}
     {...namespaces}
     {...other}
   >
