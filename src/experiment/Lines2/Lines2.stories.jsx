@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Lines2 from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 export default {
   title: 'Example/Lines2',

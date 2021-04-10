@@ -1,24 +1,26 @@
 import React from 'react'
+import Frame from '../../structure/Frame'
+import Svg from '../Svg'
 
 import Circle from './'
 
-import Svg from '../Svg'
-import Safe from '../Safe'
-
 export default {
-  title: 'Shape/Circle',
+  title: 'Primitive/Circle',
   component: Circle,
 }
 
 const Template = (args) => (
-  <Svg width={300} height={300}>
-    <Safe width={300} height={300} safe={10} />
-    <Circle {...args} />
-  </Svg>
+  <Frame>
+    <Svg width={300} height={300}>
+      <Circle {...args} />
+    </Svg>
+  </Frame>
 )
 
 export const Default = Template.bind({})
-Default.args = { cx: 150, cy: 150, r: 140 }
+Default.args = { cx: 150, cy: 150, r: 125 }
 Default.argTypes = {
-  r: { control: { type: 'range', min: 1, max: 250 } },
+  cx: { control: { type: 'range', min: 1, max: 300 } },
+  cy: { control: { type: 'range', min: 1, max: 300 } },
+  r: { control: { type: 'range', min: 1, max: 300 } },
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import RiffLoop from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import brightlyWound from './fixtures/brightly-wound.json'
 import fossil from './fixtures/fossil.json'

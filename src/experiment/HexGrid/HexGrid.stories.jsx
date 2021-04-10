@@ -4,7 +4,7 @@ import sampleSeeded from '../../lib/sample-seeded'
 import mapRange from '../../lib/map-range'
 
 import HexGrid from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import Hexagon from '../../component/Hexagon'
 import IsometricCube from '../../component/IsometricCube'

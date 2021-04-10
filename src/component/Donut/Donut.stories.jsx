@@ -6,7 +6,7 @@ import Svg from '../Svg'
 import Safe from '../Safe'
 
 export default {
-  title: 'Shape/Donut',
+  title: 'Unsorted/Donut',
   component: Donut,
 }
 

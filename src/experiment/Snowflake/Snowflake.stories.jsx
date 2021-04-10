@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Snowflake from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 // import Svg from '../../component/Svg'
 
 export default {

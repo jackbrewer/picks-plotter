@@ -1,7 +1,7 @@
 import React from 'react'
 
 import RectGrid from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import randomInt from '../../lib/random-int'
 import randomSeeded from '../../lib/random-seeded'

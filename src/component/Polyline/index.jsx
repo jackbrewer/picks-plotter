@@ -1,18 +1,12 @@
 import React from 'react'
 import { array, arrayOf } from 'prop-types'
 
-const Polyline = ({ points, ...other }) => (
-  <polyline
-    points={points.map(([x, y]) => `${x}, ${y}`).join(' ')}
-    fill="none"
-    stroke="#000"
-    strokeWidth="1"
-    {...other}
-  />
-)
+const Polyline = ({ points, ...other }) => {
+  return <polyline points={points} {...other} />
+}
 
 Polyline.propTypes = {
-  points: arrayOf(array),
+  points: arrayOf(array).isRequired,
 }
 
 export default Polyline

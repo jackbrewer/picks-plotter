@@ -2,7 +2,7 @@ import React from 'react'
 
 import Spiral2 from './'
 
-import Frame from '../Frame'
+import Frame from '../../structure/Frame'
 import Svg from '../Svg'
 import Safe from '../Safe'
 

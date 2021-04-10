@@ -6,7 +6,7 @@ import Svg from '../Svg'
 import Safe from '../Safe'
 
 export default {
-  title: 'Shape/Fork',
+  title: 'Unsorted/Fork',
   component: Fork,
 }
 

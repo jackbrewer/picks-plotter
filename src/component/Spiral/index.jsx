@@ -9,7 +9,6 @@ const Spiral = ({
   rotations,
   minRadius,
   maxRadius,
-  // pullLimits,
   ...other
 }) => {
   const c = {
@@ -47,7 +46,6 @@ Spiral.defaultProps = {
   maxRadius: 150,
   containerSize: 300,
   tension: 1.23,
-  // pullLimits: { min: 0.75, max: 1 },
 }
 
 Spiral.propTypes = {

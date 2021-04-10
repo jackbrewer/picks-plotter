@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 import GiftTag from './'
 
 export default {

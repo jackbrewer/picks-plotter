@@ -2,7 +2,7 @@ import React from 'react'
 
 import Spirals from './'
 
-import Frame from '../Frame'
+import Frame from '../../structure/Frame'
 import Svg from '../Svg'
 
 export default {

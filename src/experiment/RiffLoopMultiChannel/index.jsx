@@ -47,8 +47,8 @@ const RiffLoopMultiChannel = ({
         {data.map((channel, i) => (
           <Group key={i} label={`${i}`}>
             {channel.map((point, j) => {
-              // if (i !== 3 && j % 2 !== 0) return null // Only do every 2nd line
-              if (i !== 3 && j % 2 !== 0) return null // Special case to make fourth layer more dense
+              if (j % 2 !== 0) return null // Only do every 2nd line
+              // if (i === 3 && j % 2 !== 0) return null // Special case to make fourth layer more dense
               if (point === 0) return null
               const multipliedPoint = multipliers[i]
                 ? point * multipliers[i]
@@ -83,6 +83,45 @@ const RiffLoopMultiChannel = ({
             })}
           </Group>
         ))}
+        {/* {data.map((channel, i) => (
+          <Group key={i} label={`${i}`}>
+            {channel.map((point, j) => {
+              // if (j % 2 !== 0) return null // Only do every 2nd line
+              if (j % 2 !== 1) return null // Special case to make fourth layer more dense
+              if (point === 0) return null
+              const multipliedPoint = multipliers[i]
+                ? point * multipliers[i]
+                : point
+              const normalisedPoint = mapRange({
+                value: multipliedPoint,
+                min1: 0,
+                max1: 1,
+                min2: innerPadding,
+                max2: 1,
+              })
+              return (
+                <Polyline
+                  key={`left:${j}`}
+                  points={[
+                    [c.x, c.y - r1],
+                    // [c.x, c.y - r1 + 10],
+                    // [c.x, c.y - r1 + (point > 0 ? 10 : 0)],
+                    // [c.x, c.y - r1 + 10 + r1 * point * 0.3],
+
+                    // [c.x, c.y - r1 - (r2 - r1) * point],
+                    [c.x, c.y - r1 - (r2 - r1) * normalisedPoint],
+                  ]}
+                  strokeWidth="2"
+                  stroke={'blue'}
+                  strokeOpacity="0.8"
+                  transform={`rotate(${0.5 * j + (1 / data.length) * i}, ${
+                    c.x
+                  }, ${c.y})`}
+                />
+              )
+            })}
+          </Group>
+        ))} */}
 
         {/* {lyrics && (
           <Group label="% Lyrics" transform={`rotate(90, ${c.x}, ${c.y})`}>

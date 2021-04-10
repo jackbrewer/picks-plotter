@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Tides from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import bude2021 from './fixtures/bude-2021.json'
 

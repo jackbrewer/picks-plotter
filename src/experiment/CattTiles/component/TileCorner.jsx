@@ -1,0 +1,110 @@
+import React, { Fragment } from 'react'
+import { number } from 'prop-types'
+import pythagoras from '../../../lib/pythagoras'
+import anglesFromSides from '../../../lib/triangle/angles-from-sides'
+
+const TileCorner = ({ x, y, w, h, rot, lines }) => {
+  const hyp = pythagoras({ a: w, b: h })
+
+  return (
+    <g transform={`rotate(${rot}, ${x + w / 2}, ${y + h / 2})`}>
+      {/* {[...Array(lines).keys()].map((i) => {
+        const m = (1 / (lines - 1)) * i
+        return (
+          <path
+            key={i}
+            d={[
+              `M ${x + w}, ${y + h * (1 - m)}`,
+              `A ${h * m}, ${w * m} 0,0,0 ${x + w - w * m}, ${y + h}`,
+            ]}
+            stroke="lightgrey"
+          />
+        )
+      })} */}
+
+      {/* {[...Array(lines + 1).keys()].map((i) => {
+        const angleStep = (90 / (lines + 1)) * i
+        return (
+          <line
+            key={100000 + i}
+            x1={0}
+            y1={0}
+            x2={w}
+            y2={0}
+            transform={`rotate(${angleStep},${0},${0})`}
+          />
+        )
+      })} */}
+
+      {[...Array(lines).keys()].map((i) => {
+        const m = (1 / (lines - 1)) * i
+        if (hyp < w + w * m) return null
+        return (
+          <path
+            key={i}
+            d={[
+              `M ${x + w}, ${y + h * (1 - m)}`,
+              `A ${h * m}, ${w * m} 0,0,0 ${x + w - w * m}, ${y + h}`,
+            ]}
+            // stroke="green"
+          />
+        )
+      })}
+
+      {[...Array(lines).keys()].map((i) => {
+        const m = (1 / (lines - 1)) * i
+        if (hyp > w + w * m) return null
+
+        const angle = anglesFromSides({ a: w * m, b: w, c: hyp }).a
+        const rad = (Math.PI / 180) * (angle + 45)
+        const end = {}
+        end.x = w * Math.sin(rad)
+        end.y = Math.sqrt(Math.pow(w, 2) - Math.pow(end.x, 2))
+
+        return (
+          <Fragment key={i}>
+            <path
+              d={[
+                `M ${x + w}, ${y + h * (1 - m)}`,
+                `A ${h * m}, ${w * m} 0,0,0 ${x + end.x}, ${y + end.y}`,
+              ]}
+              // stroke="orange"
+            />
+            <path
+              d={[
+                `M ${x + end.y}, ${y + end.x}`,
+                `A ${h * m}, ${w * m} 0,0,0 ${x + w * (1 - m)}, ${y + h}`,
+              ]}
+              // stroke="blue"
+            />
+          </Fragment>
+        )
+      })}
+
+      {[...Array(lines).keys()].map((i) => {
+        const m = (1 / (lines - 1)) * i
+        return (
+          <path
+            key={i}
+            d={[
+              `M ${x}, ${y + h - h * (1 - m)}`,
+              `A ${h * m}, ${w * m} 0,0,0 ${x + w * m}, ${y}`,
+            ]}
+            stroke="black"
+          />
+        )
+      })}
+    </g>
+  )
+}
+
+TileCorner.propTypes = {
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  rot: number,
+  lines: number,
+}
+
+export default TileCorner

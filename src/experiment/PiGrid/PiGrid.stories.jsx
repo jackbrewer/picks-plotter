@@ -4,7 +4,7 @@ import React from 'react'
 import randomInt from '../../lib/random-int'
 
 import PiGrid from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 import Circle from '../../component/Circle'
 import Polygon from '../../component/Polygon'
 import Polyline from '../../component/Polyline'

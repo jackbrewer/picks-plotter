@@ -1,7 +1,6 @@
 import uniquePermutations from '../unique-permutations'
 
 describe('uniquePermutations()', () => {
-  // JSDOM can't test the needed SVG methods
   test('should return all unique permutations', () => {
     expect(uniquePermutations('123')).toEqual([
       '123',

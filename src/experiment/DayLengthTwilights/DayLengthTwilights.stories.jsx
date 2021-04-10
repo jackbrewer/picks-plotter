@@ -1,7 +1,7 @@
 import React from 'react'
 
 import DayLengthTwilights from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import dataQ1 from './fixtures/2021/q1.json'
 

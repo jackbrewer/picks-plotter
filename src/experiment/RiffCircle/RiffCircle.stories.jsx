@@ -1,7 +1,7 @@
 import React from 'react'
 
 import RiffCircle from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import fossil from './fixtures/fossil.json'
 import whiteWalls from './fixtures/white-walls.json'

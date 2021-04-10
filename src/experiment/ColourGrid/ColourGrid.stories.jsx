@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ColourGrid from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 export default {
   title: 'Example/ColourGrid',
@@ -9,7 +9,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame name="ColourGrid" seeded>
+  <Frame name="ColourGrid" seeded refresh={!args.seed}>
     <ColourGrid {...args} />
   </Frame>
 )

@@ -4,7 +4,7 @@ import { node, number } from 'prop-types'
 import Squares from './'
 import Svg from '../../component/Svg'
 import Safe from '../../component/Safe'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import Corners from './component/Corners'
 import Cross from './component/Cross'

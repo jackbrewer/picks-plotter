@@ -2,7 +2,7 @@ import React from 'react'
 
 import Blocks from './'
 import Svg from '../../component/Svg'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 export default {
   title: 'Example/Blocks',

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import StepSquad from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 export default {
   title: 'Numbers/StepSquad',

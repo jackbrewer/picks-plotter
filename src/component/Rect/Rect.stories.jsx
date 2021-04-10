@@ -1,24 +1,31 @@
 import React from 'react'
+import Frame from '../../structure/Frame'
+import Svg from '../Svg'
 
 import Rect from './'
 
-import Svg from '../Svg'
-import Safe from '../Safe'
-
 export default {
-  title: 'Shape/Rect',
+  title: 'Primitive/Rect',
   component: Rect,
 }
 
 const Template = (args) => (
-  <Svg width={300} height={300}>
-    <Safe width={300} height={300} safe={10} />
-    <Rect {...args} />
-  </Svg>
+  <Frame>
+    <Svg width={300} height={300}>
+      <Rect {...args} />
+    </Svg>
+  </Frame>
 )
 
 export const Default = Template.bind({})
-Default.args = { x: 10, y: 10, width: 280, height: 280, rx: 0, ry: 0 }
+Default.args = {
+  x: 10,
+  y: 10,
+  width: 280,
+  height: 280,
+  rx: 0,
+  ry: 0,
+}
 Default.argTypes = {
   x: { control: { type: 'range', min: 0, max: 300 } },
   y: { control: { type: 'range', min: 0, max: 300 } },

@@ -9,18 +9,15 @@ const Rect = ({ x, y, width, height, rx, ry, ...other }) => (
     height={height}
     rx={rx || ry}
     ry={ry || rx}
-    fill="none"
-    stroke="#000"
-    strokeWidth="1"
     {...other}
   />
 )
 
 Rect.propTypes = {
-  x: number,
-  y: number,
-  width: number,
-  height: number,
+  x: number.isRequired,
+  y: number.isRequired,
+  width: number.isRequired,
+  height: number.isRequired,
   rx: number,
   ry: number,
 }

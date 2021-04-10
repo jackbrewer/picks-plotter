@@ -1,7 +1,7 @@
 import React from 'react'
 
 import BlobFace from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 export default {
   title: 'Example/BlobFace',
@@ -9,7 +9,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame name="BlobFace">
+  <Frame name="BlobFace" refresh>
     <BlobFace {...args} />
   </Frame>
 )

@@ -2,7 +2,7 @@ import React from 'react'
 
 import RiffSpirals2 from './'
 
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import offsets from '../RiffCircle/fixtures/under-the-bridge.json'
 import hysteria from '../RiffCircle/fixtures/hysteria/vocals.json'

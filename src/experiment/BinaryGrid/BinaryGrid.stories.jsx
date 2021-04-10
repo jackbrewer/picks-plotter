@@ -1,7 +1,7 @@
 import React from 'react'
 
 import BinaryGrid from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import LineStar from './component/LineStar'
 import NestedCircle from './component/NestedCircle'
@@ -15,7 +15,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame name="BinaryGrid">
+  <Frame name="BinaryGrid" refresh={args.shuffle}>
     <BinaryGrid {...args} />
   </Frame>
 )

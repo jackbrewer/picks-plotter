@@ -2,7 +2,7 @@ import React from 'react'
 
 import WalkFillSpiral from './'
 
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 import Svg from '../../component/Svg'
 
 export default {

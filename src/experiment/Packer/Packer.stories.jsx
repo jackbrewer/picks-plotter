@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Packer from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 export default {
   title: 'Example/Packer',

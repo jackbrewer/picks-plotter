@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ThermoHygrometer from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import data01 from './fixtures/01.json'
 import data02 from './fixtures/02.json'

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import RiffLoopMultiChannel from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 import song2Drums from './fixtures/song2/drums.json'
 import song2Vocals from './fixtures/song2/vocals.json'
@@ -52,14 +52,17 @@ export const Uprising = Template.bind({})
 Uprising.args = {
   audio: '/audio/uprising/uprising.mp3',
   data: [
-    UprisingBass,
-    UprisingDrums,
-    UprisingGuitar,
+    // UprisingBass,
+    // UprisingDrums,
+    // UprisingGuitar,
     UprisingVocals,
     // UprisingAdditional,
   ],
-  colors: ['teal', 'cyan', 'green', 'black'],
-  multipliers: [1.5, 4, 0.9, 0.8],
+  colors: [
+    // 'teal', 'cyan', 'green',
+    'black',
+  ],
+  multipliers: [0.8, 4, 0.9, 0.8],
   innerPadding: 0.14,
   innerRadiusMultiplier: 0.3,
   lyricRadiusMultiplier: 1.14,

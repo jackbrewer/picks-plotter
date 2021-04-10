@@ -1,7 +1,7 @@
 import React from 'react'
 import { number } from 'prop-types'
 
-import ClickRefresh from '../../component/ClickRefresh'
+import ClickRefresh from '../../structure/ClickRefresh'
 import Safe from '../../component/Safe'
 import Svg from '../../component/Svg'
 import Snowflake from '../../experiment/Snowflake'

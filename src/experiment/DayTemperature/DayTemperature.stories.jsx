@@ -1,7 +1,7 @@
 import React from 'react'
 
 import DayTemperature from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 // http://data.ceda.ac.uk/badc/ukmo-midas-open/data/uk-daily-temperature-obs/dataset-version-202007/gloucestershire/00691_westonbirt/qc-version-1
 

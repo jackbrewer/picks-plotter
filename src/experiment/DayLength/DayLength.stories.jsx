@@ -1,7 +1,7 @@
 import React from 'react'
 
 import DayLength from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 // https://www.sunrise-and-sunset.com/en/sun/united-kingdom/lydney/2021
 // http://data.ceda.ac.uk/badc/ukmo-midas-open/data/uk-daily-temperature-obs/dataset-version-202007/gloucestershire/10268_winchcombe-sudeley-castle/qc-version-1

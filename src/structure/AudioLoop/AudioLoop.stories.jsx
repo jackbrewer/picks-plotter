@@ -3,7 +3,7 @@ import React from 'react'
 import AudioLoop from './'
 
 export default {
-  title: 'Shape/AudioLoop',
+  title: 'Unsorted/AudioLoop',
   component: AudioLoop,
 }
 

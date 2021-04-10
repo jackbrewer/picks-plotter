@@ -1,10 +1,10 @@
 import React, { cloneElement, useState } from 'react'
-import { array, bool, node, object, string } from 'prop-types'
+import { array, bool, node, string } from 'prop-types'
 
 import saveSvg from './lib/save-svg'
 import generateSeed from '../../lib/generate-seed'
 
-const Frame = ({ children, seeded, name, blacklistProps }) => {
+const Frame = ({ children, seeded, refresh, name, blacklistProps }) => {
   const [now, setNow] = useState(Date.now())
   const seed = seeded ? children.props.seed || generateSeed() : false
   const genTime = new Date(now).toLocaleTimeString()
@@ -33,17 +33,19 @@ const Frame = ({ children, seeded, name, blacklistProps }) => {
       </div>
       <div className="frame__actions">
         <div className="button-group">
-          <button className="button" onClick={handleRefresh}>
-            Refresh
-          </button>
+          {refresh && (
+            <button className="button" onClick={handleRefresh}>
+              Refresh
+            </button>
+          )}
           <button className="button" onClick={handleSave}>
             Save
           </button>
         </div>
         <div className="footnote">
-          {name && `${name} | `}
-          {genTime}
-          {seeded && ` | ${seed}`}
+          {[name, refresh && genTime, seeded && seed]
+            .filter(Boolean)
+            .join(' | ')}
         </div>
       </div>
     </div>
@@ -51,11 +53,11 @@ const Frame = ({ children, seeded, name, blacklistProps }) => {
 }
 
 Frame.propTypes = {
-  args: object,
-  children: node,
-  seeded: bool,
-  name: string,
   blacklistProps: array,
+  children: node,
+  name: string,
+  refresh: bool,
+  seeded: bool,
 }
 
 export default Frame

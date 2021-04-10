@@ -4,7 +4,7 @@ import React from 'react'
 // import mapRange from '../../lib/map-range'
 
 import ChristmasTree from './'
-import Frame from '../../component/Frame'
+import Frame from '../../structure/Frame'
 
 // import Hexagon from '../../component/Hexagon'
 // import IsometricCube from '../../component/IsometricCube'
