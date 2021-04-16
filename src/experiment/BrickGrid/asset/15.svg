@@ -1,0 +1,95 @@
+
+<svg viewBox="0 0 728.1 622.9">
+	<g id="Brick_80_">
+		<g id="Inline_80_">
+
+				<line fill="none" stroke="#1F1F85" x1="581.6" y1="169.3" x2="436.6" y2="253"/>
+
+				<line fill="none" stroke="#1F1F85" x1="436.6" y1="253" x2="436.6" y2="353.5"/>
+
+				<line fill="none" stroke="#1F1F85" x1="146.5" y1="85.6" x2="436.6" y2="253"/>
+		</g>
+		<g id="Outline_80_">
+			<polygon fill="none" stroke="#1D4B9C" points="436.6,353.5 146.5,186.1
+				146.5,85.6 291.5,1.8 581.6,169.3 581.6,269.8 			"/>
+		</g>
+		<g id="Studs_80_">
+
+				<ellipse fill="none" stroke="#204095" cx="509.1" cy="152.6" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M539.8,152.6v16.7
+				c0,9.8-13.8,17.8-30.8,17.8c-17,0-30.8-8-30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#204095" cx="436.6" cy="110.7" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M467.3,110.7v16.7
+				c0,9.8-13.8,17.8-30.8,17.8c-17,0-30.8-8-30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#204095" cx="364" cy="68.8" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M394.8,68.8v16.7
+				c0,9.8-13.8,17.8-30.8,17.8c-17,0-30.8-8-30.8-17.8V68.8"/>
+
+				<ellipse fill="none" stroke="#204095" cx="291.5" cy="26.9" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M322.3,26.9v16.7
+				c0,9.8-13.8,17.8-30.8,17.8s-30.8-8-30.8-17.8V26.9"/>
+
+				<ellipse fill="none" stroke="#204095" cx="436.6" cy="194.4" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M467.3,194.4v16.7
+				c0,9.8-13.8,17.8-30.8,17.8c-17,0-30.8-8-30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#204095" cx="364" cy="152.6" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M394.8,152.6v16.7
+				c0,9.8-13.8,17.8-30.8,17.8c-17,0-30.8-8-30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#204095" cx="291.5" cy="110.7" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M322.3,110.7v16.7
+				c0,9.8-13.8,17.8-30.8,17.8s-30.8-8-30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#204095" cx="219" cy="68.8" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#204095" d="M249.8,68.8v16.7
+				c0,9.8-13.8,17.8-30.8,17.8s-30.8-8-30.8-17.8V68.8"/>
+		</g>
+	</g>
+	<g id="Brick_56_">
+		<g id="Inline_56_">
+
+				<line fill="none" stroke="#B90622" x1="146.5" y1="436.9" x2="291.5" y2="520.6"/>
+
+				<line fill="none" stroke="#B90622" x1="291.5" y1="520.6" x2="291.5" y2="621.1"/>
+
+				<line fill="none" stroke="#B90622" x1="581.6" y1="353.2" x2="291.5" y2="520.6"/>
+		</g>
+		<g id="Outline_56_">
+			<polyline fill="none" stroke="#E4165A" points="363.7,311.5 146.5,436.9
+				146.5,537.4 291.5,621.1 581.6,453.6 581.6,353.2 509.4,311.5 			"/>
+		</g>
+		<g id="Studs_56_">
+
+				<ellipse fill="none" stroke="#E3174C" cx="219" cy="420.1" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#E3174C" d="M188.2,420.1v16.7
+				c0,9.8,13.8,17.8,30.8,17.8s30.8-8,30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#E3174C" cx="291.5" cy="378.3" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#E3174C" d="M260.7,378.3V395
+				c0,9.8,13.8,17.8,30.8,17.8s30.8-8,30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#E3174C" cx="364" cy="336.4" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#E3174C" d="M333.3,336.4v16.7
+				c0,9.8,13.8,17.8,30.8,17.8c17,0,30.8-8,30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#E3174C" cx="291.5" cy="462" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#E3174C" d="M260.7,462v16.7
+				c0,9.8,13.8,17.8,30.8,17.8s30.8-8,30.8-17.8V462"/>
+
+				<ellipse fill="none" stroke="#E3174C" cx="364" cy="420.1" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#E3174C" d="M333.3,420.1v16.7
+				c0,9.8,13.8,17.8,30.8,17.8c17,0,30.8-8,30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#E3174C" cx="436.6" cy="378.3" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#E3174C" d="M405.8,378.3V395
+				c0,9.8,13.8,17.8,30.8,17.8c17,0,30.8-8,30.8-17.8v-16.7"/>
+
+				<ellipse fill="none" stroke="#E3174C" cx="509.1" cy="336.4" rx="30.8" ry="17.8"/>
+			<path fill="none" stroke="#E3174C" d="M478.3,336.4v16.7
+				c0,9.8,13.8,17.8,30.8,17.8c17,0,30.8-8,30.8-17.8v-16.7"/>
+		</g>
+	</g>
+</svg>

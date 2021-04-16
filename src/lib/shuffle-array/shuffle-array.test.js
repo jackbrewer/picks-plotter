@@ -1,4 +1,4 @@
-import shuffleArray from '../shuffle-array'
+import shuffleArray from '.'
 
 describe('shuffleArray()', () => {
   test('should return a shuffled array of the same length', () => {

@@ -26,3 +26,26 @@ Default.args = {
   rot: 0,
   lines: 5,
 }
+
+export const Offset = Template.bind({})
+Offset.args = {
+  x: 0,
+  y: 0,
+  w: 100,
+  h: 100,
+  rot: 0,
+  lines: 5,
+  offset: true,
+}
+
+export const OffsetJoin = Template.bind({})
+OffsetJoin.args = {
+  x: 0,
+  y: 0,
+  w: 100,
+  h: 100,
+  rot: 0,
+  lines: 5,
+  offset: true,
+  offsetJoin: true,
+}

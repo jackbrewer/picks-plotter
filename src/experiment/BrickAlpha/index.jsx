@@ -1,7 +1,7 @@
 import React from 'react'
 import { number } from 'prop-types'
 
-const Brick = ({ cx, cy, r, rotation, precision, ...other }) => {
+const BrickAlpha = ({ cx, cy, r, rotation, precision, ...other }) => {
   const points = [...Array(6).keys()]
     .map((n, i) => {
       const deg = 60 * i - 30
@@ -77,11 +77,11 @@ const Brick = ({ cx, cy, r, rotation, precision, ...other }) => {
   )
 }
 
-Brick.defaultProps = {
+BrickAlpha.defaultProps = {
   precision: 2,
 }
 
-Brick.propTypes = {
+BrickAlpha.propTypes = {
   cx: number,
   cy: number,
   r: number,
@@ -89,4 +89,4 @@ Brick.propTypes = {
   precision: number,
 }
 
-export default Brick
+export default BrickAlpha

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Brick from './'
-import Svg from '../../component/Svg'
 import Frame from '../../structure/Frame'
 
 export default {
@@ -11,9 +10,7 @@ export default {
 
 const Template = (args) => (
   <Frame name="Brick">
-    <Svg width={300} height={300}>
-      <Brick {...args} />
-    </Svg>
+    <Brick {...args} />
   </Frame>
 )
 

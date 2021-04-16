@@ -22,3 +22,14 @@ Default.args = {
   rows: 10,
   lines: 5,
 }
+
+export const Large = Template.bind({})
+Large.args = {
+  printWidth: 210,
+  printHeight: 290,
+  width: 210,
+  height: 290,
+  cols: 21,
+  rows: 29,
+  lines: 7,
+}

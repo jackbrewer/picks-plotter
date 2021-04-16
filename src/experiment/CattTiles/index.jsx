@@ -1,5 +1,5 @@
 import React from 'react'
-import { number, string } from 'prop-types'
+import { bool, number, string } from 'prop-types'
 
 import Svg from '../../component/Svg'
 
@@ -25,6 +25,8 @@ const CattTiles = ({
   lines,
   seed,
   typeThreshold,
+  offset,
+  offsetJoin,
 }) => {
   const grid = gridCells({ width, height, rows, cols })
   const cells = grid.cells.map((cell, i) => ({
@@ -66,6 +68,8 @@ const CattTiles = ({
             x={cell.x}
             y={cell.y}
             rot={cell.rotation}
+            offset={offset}
+            offsetJoin={offsetJoin}
           />
         )
       })}
@@ -90,6 +94,8 @@ CattTiles.propTypes = {
   lines: number,
   seed: string,
   typeThreshold: number,
+  offset: bool,
+  offsetJoin: bool,
 }
 
 export default CattTiles
