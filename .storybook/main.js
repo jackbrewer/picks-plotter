@@ -9,8 +9,15 @@ module.exports = {
     fileLoaderRule.exclude = /\.svg$/
     config.module.rules.push({
       test: /\.svg$/,
-      enforce: 'pre',
-      loader: require.resolve('@svgr/webpack'),
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            // native: true,
+            svgo: false,
+          },
+        },
+      ],
     })
     return config
   },

@@ -9,10 +9,12 @@ import mapRange from '../../lib/map-range'
 
 import TileStraight from './component/TileStraight'
 import TileCorner from './component/TileCorner'
+import TileCross from './component/TileCross'
 
 const TileElMap = {
   a: TileStraight,
   b: TileCorner,
+  c: TileCross,
 }
 
 const CattTiles = ({
@@ -28,16 +30,22 @@ const CattTiles = ({
   offset,
   offsetJoin,
 }) => {
+  const getTileType = ({ value }) => {
+    if (value < 0.5) return 'a'
+    if (value < 0.9) return 'b'
+    return 'c'
+  }
   const grid = gridCells({ width, height, rows, cols })
   const cells = grid.cells.map((cell, i) => ({
     ...cell,
     // type: randomSeeded(`${seed}:${i}:type`) > typeThreshold ? 'a' : 'b',
     // type:
     //   randomSeeded(`${seed}:${i}:type`) > (0.6 / grid.cells.length) * i + 0.4
-    type:
-      randomSeeded(`${seed}:${i}:type`) > (1 / grid.cells.length) * i
-        ? 'a'
-        : 'b',
+    // type:
+    //   randomSeeded(`${seed}:${i}:type`) > (1 / grid.cells.length) * i
+    //     ? 'a'
+    //     : 'b',
+    type: getTileType({ value: randomSeeded(`${seed}:${i}:type`) }),
     rotation:
       90 *
       Math.round(
