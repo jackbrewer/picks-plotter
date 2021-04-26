@@ -15,4 +15,16 @@ const Template = (args) => (
 )
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  printWidth: 218,
+  printHeight: 300,
+}
+
+export const Large = Template.bind({})
+Large.args = {
+  ...Default.args,
+  cols: 6,
+  rows: 8,
+  all: true,
+  shuffle: false,
+}

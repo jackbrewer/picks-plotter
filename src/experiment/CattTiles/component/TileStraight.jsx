@@ -3,6 +3,8 @@ import { bool, number } from 'prop-types'
 
 import Polyline from '../../../component/Polyline'
 
+import getStrokeWidth from '../lib/getStrokeWidth'
+
 // TODO:
 // optimisations - don't calc position every loop, just calc distance between lines and initial offset on render, then use multiples of that during loop
 
@@ -19,7 +21,17 @@ const getXOff = ({ x, w, lines, i, offset }) => {
   return x + (w / (lines - 1)) * i
 }
 
-const TileStraight = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
+const TileStraight = ({
+  x,
+  y,
+  w,
+  h,
+  rot,
+  lines,
+  offset,
+  offsetJoin,
+  edges,
+}) => {
   return (
     <g>
       {[...Array(lines).keys()].map((i) => {
@@ -37,6 +49,7 @@ const TileStraight = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
           <Polyline
             key={`line:${i}`}
             points={i % 2 ? points : points.reverse()}
+            strokeWidth={getStrokeWidth({ edges, i, lines })}
           />
         )
       })}
@@ -56,6 +69,7 @@ const TileStraight = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
             <Polyline
               key={`line:${i}`}
               points={i % 2 ? points : points.reverse()}
+              strokeWidth={getStrokeWidth({ edges, i, lines })}
             />
           )
         })}
@@ -75,6 +89,7 @@ const TileStraight = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
             <Polyline
               key={`line:${i}`}
               points={i % 2 ? points : points.reverse()}
+              strokeWidth={getStrokeWidth({ edges, i, lines })}
             />
           )
         })}
@@ -91,6 +106,7 @@ TileStraight.propTypes = {
   lines: number,
   offset: bool,
   offsetJoin: bool,
+  edges: bool,
 }
 
 export default TileStraight

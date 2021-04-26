@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { bool, number } from 'prop-types'
 import pythagoras from '../../../lib/pythagoras'
 import anglesFromSides from '../../../lib/triangle/angles-from-sides'
+import getStrokeWidth from '../lib/getStrokeWidth'
 
 const getArcOffset = ({ i, lines, offset }) => {
   if (offset) {
@@ -10,7 +11,7 @@ const getArcOffset = ({ i, lines, offset }) => {
   return (1 / (lines - 1)) * i
 }
 
-const TileCorner = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
+const TileCorner = ({ x, y, w, h, rot, lines, offset, offsetJoin, edges }) => {
   const hyp = pythagoras({ a: w, b: h })
 
   return (
@@ -54,6 +55,7 @@ const TileCorner = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
               `M ${x + w}, ${y + h * (1 - m)}`,
               `A ${h * m}, ${w * m} 0,0,0 ${x + w - w * m}, ${y + h}`,
             ]}
+            strokeWidth={getStrokeWidth({ edges, i, lines })}
             // stroke="green"
           />
         )
@@ -97,6 +99,7 @@ const TileCorner = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
                 `M ${x + w}, ${y + h * (1 - m)}`,
                 `A ${h * m}, ${w * m} 0,0,0 ${x + end.x}, ${y + end.y}`,
               ]}
+              strokeWidth={getStrokeWidth({ edges, i, lines })}
               // stroke="orange"
             />
             <path
@@ -104,6 +107,7 @@ const TileCorner = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
                 `M ${x + end.y}, ${y + end.x}`,
                 `A ${h * m}, ${w * m} 0,0,0 ${x + w * (1 - m)}, ${y + h}`,
               ]}
+              strokeWidth={getStrokeWidth({ edges, i, lines })}
               // stroke="blue"
             />
           </Fragment>
@@ -119,6 +123,7 @@ const TileCorner = ({ x, y, w, h, rot, lines, offset, offsetJoin }) => {
               `M ${x}, ${y + h - h * (1 - m)}`,
               `A ${h * m}, ${w * m} 0,0,0 ${x + w * m}, ${y}`,
             ]}
+            strokeWidth={getStrokeWidth({ edges, i, lines })}
             // stroke="black"
           />
         )
@@ -136,6 +141,7 @@ TileCorner.propTypes = {
   lines: number,
   offset: bool,
   offsetJoin: bool,
+  edges: bool,
 }
 
 export default TileCorner
