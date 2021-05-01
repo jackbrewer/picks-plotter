@@ -3,7 +3,8 @@ import randomSeeded from '../random-seeded'
 // Fisher–Yates shuffle
 
 const shuffleArraySeeded = ({ arr, seed }) => {
-  let currentIndex = arr.length
+  const arrayCopy = [...arr]
+  let currentIndex = arrayCopy.length
   let tempVal
   let randomIndex
 
@@ -12,12 +13,12 @@ const shuffleArraySeeded = ({ arr, seed }) => {
       randomSeeded(`${seed}:${currentIndex}`) * currentIndex--
     )
 
-    tempVal = arr[currentIndex]
-    arr[currentIndex] = arr[randomIndex]
-    arr[randomIndex] = tempVal
+    tempVal = arrayCopy[currentIndex]
+    arrayCopy[currentIndex] = arrayCopy[randomIndex]
+    arrayCopy[randomIndex] = tempVal
   }
 
-  return arr
+  return arrayCopy
 }
 
 export default shuffleArraySeeded
