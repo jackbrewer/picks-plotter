@@ -29,8 +29,10 @@ const UpwardSpirals = ({
     const positionOffset =
       ((maxRadius - minRadius) / pointsCount) * i + minRadius
 
-    const x = c.x + Math.cos(i * angleStep * 1.01) * positionOffset + i * 0.05
-    const y = c.y + Math.sin(i * angleStep * 0.99) * positionOffset
+    const x = c.x + Math.cos(i * angleStep * 1.001) * positionOffset + i * 0.03
+    const y = c.y + Math.sin(i * angleStep * 1) * positionOffset
+    // const x = c.x + Math.cos(i * angleStep * 1.01) * positionOffset + i * 0.05
+    // const y = c.y + Math.sin(i * angleStep * 0.99) * positionOffset
     points.push({ x, y })
   }
   const pathData = spline(points, tension, false).split(',')

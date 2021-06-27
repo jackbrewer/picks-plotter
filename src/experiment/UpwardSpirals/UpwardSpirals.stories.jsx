@@ -17,15 +17,15 @@ const Template = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  colors: ['black'],
-  containerSize: 180,
-  maxRadius: 45,
-  minRadius: 25,
-  numPoints: 30,
-  offset: 0,
-  printSize: 180,
-  rotations: 88,
-  tension: 1,
+  // colors: ['black'],
+  // containerSize: 180,
+  // maxRadius: 45,
+  // minRadius: 25,
+  // numPoints: 30,
+  // offset: 0,
+  // printSize: 180,
+  // rotations: 88,
+  // tension: 1,
 }
 
 export const Cmyk = Template.bind({})

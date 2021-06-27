@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { number, string } from 'prop-types'
+import { arrayOf, number, string } from 'prop-types'
 
 import Svg from '../../component/Svg'
 import Polyline from '../../component/Polyline'
@@ -10,8 +10,11 @@ const RiffLoopAnalyser = ({
   height,
   printWidth,
   printHeight,
+  sampleCount,
+  precision,
+  colors,
 }) => {
-  const [data, setData] = useState({})
+  const [data, setData] = useState([])
 
   // Set up audio context
   window.AudioContext = window.AudioContext || window.webkitAudioContext
@@ -21,20 +24,22 @@ const RiffLoopAnalyser = ({
    * Retrieves audio from an external source, the initializes the drawing function
    * @param {String} url the url of the audio we'd like to fetch
    */
-  const drawAudio = ({ url, channels }) => {
+  const drawAudio = ({ url }) => {
     fetch(url)
       .then((response) => response.arrayBuffer())
       .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))
       .then((audioBuffer) => {
-        const filteredData = {}
-        const normalisedData = {}
+        const filteredData = []
+        const normalisedData = []
+        const channelsCount = audioBuffer.numberOfChannels
+        const channels = [...Array(channelsCount).keys()]
 
-        channels.map((name) => {
-          return (filteredData[name] = filterData(audioBuffer, name))
+        channels.map((c) => {
+          return filteredData.push(filterData(audioBuffer, c))
         })
-        const max = Math.max(...filteredData.left)
-        channels.map((name) => {
-          return (normalisedData[name] = normalizeData(filteredData[name], max))
+        const max = Math.max(...filteredData.map((c) => Math.max(...c)))
+        channels.map((c) => {
+          return normalisedData.push(normalizeData(filteredData[c], max))
         })
         setData(normalisedData)
       })
@@ -46,8 +51,8 @@ const RiffLoopAnalyser = ({
    * @returns {Array} an array of floating point numbers
    */
   const filterData = (audioBuffer, channel) => {
-    const rawData = audioBuffer.getChannelData(channel === 'left' ? 0 : 1) // We only need to work with one channel of data
-    const samples = 720 // Number of samples we want to have in our final data set
+    const rawData = audioBuffer.getChannelData(channel) // We only need to work with one channel of data
+    const samples = sampleCount // Number of samples we want to have in our final data set
     const blockSize = Math.floor(rawData.length / samples) // the number of samples in each subdivision
     const filteredData = []
     for (let i = 0; i < samples; i++) {
@@ -69,13 +74,16 @@ const RiffLoopAnalyser = ({
    */
   const normalizeData = (filteredData, max) => {
     const multiplier = Math.pow(max, -1)
-    return filteredData.map((n) => +(n * multiplier).toFixed(4))
+    return filteredData.map((n) => +(n * multiplier).toFixed(precision))
   }
 
   const handleClick = () => {
-    drawAudio({ url: audio, channels: ['left'] })
+    drawAudio({ url: audio })
   }
 
+  const lineGap = width / sampleCount
+  const lineWidth = Math.max(lineGap, 0.1).toFixed(2)
+  const lineOffset = lineGap * 0.5
   return (
     <div>
       <Svg
@@ -83,36 +91,27 @@ const RiffLoopAnalyser = ({
         height={`${printHeight}mm`}
         viewBox={`0 0 ${width} ${height}`}
       >
-        <g>
-          {data.left &&
-            data.left.map((point, i) => (
-              <Polyline
-                key={i}
-                points={[
-                  [i * 0.5, height],
-                  [i * 0.5, height - height * point],
-                ]}
-                strokeWidth="0.5"
-                stroke="blue"
-                strokeOpacity="0.5"
-              />
-            ))}
-        </g>
-        <g>
-          {data.right &&
-            data.right.map((point, i) => (
-              <Polyline
-                key={i}
-                points={[
-                  [i * 0.5, height],
-                  [i * 0.5, height - height * point],
-                ]}
-                strokeWidth="0.5"
-                stroke="red"
-                strokeOpacity="0.5"
-              />
-            ))}
-        </g>
+        <style>{(() => `polyline { mix-blend-mode: multiply; }`)()}</style>
+        {data.map((channel, j) => (
+          <g key={`channel:${j}`}>
+            {channel &&
+              channel.map((point, i) => {
+                if (!point) return null
+                return (
+                  <Polyline
+                    key={i}
+                    points={[
+                      [i * lineGap + lineOffset, height],
+                      [i * lineGap + lineOffset, height - height * point],
+                    ]}
+                    strokeWidth={lineWidth}
+                    stroke={colors[j]}
+                    strokeOpacity="0.5"
+                  />
+                )
+              })}
+          </g>
+        ))}
       </Svg>
 
       <div className="audio-player">
@@ -123,18 +122,21 @@ const RiffLoopAnalyser = ({
         <button className="button" onClick={handleClick}>
           Click
         </button>
-        <textarea value={JSON.stringify(data, '', 2)} />
+        <textarea value={JSON.stringify(data, '', 2)} readOnly rows="4" />
       </div>
     </div>
   )
 }
 
 RiffLoopAnalyser.defaultProps = {
-  printWidth: 180,
-  printHeight: 180,
-  width: 180,
-  height: 180,
+  printWidth: 200,
+  printHeight: 60,
+  width: 200,
+  height: 60,
   audio: '',
+  sampleCount: 720,
+  precision: 4,
+  colors: ['blue', 'red'],
 }
 
 RiffLoopAnalyser.propTypes = {
@@ -143,6 +145,15 @@ RiffLoopAnalyser.propTypes = {
   printWidth: number,
   printHeight: number,
   audio: string,
+  sampleCount: number,
+  precision: number,
+  colors: arrayOf(string),
+
+  // TODO: trim normalised values using these limits, then renormalise?
+  highCutoff: number,
+  lowCutoff: number,
+
+  // optionsal timestamps?
 }
 
 export default RiffLoopAnalyser

@@ -16,6 +16,7 @@ const HexGrid = ({
   printHeight,
   seed,
   trimOddEnds,
+  multiply,
 }) => {
   const radius = size / 2
   // const hex = {
@@ -39,6 +40,11 @@ const HexGrid = ({
       height={`${printHeight}mm`}
       viewBox={`0 0 ${width} ${height}`}
     >
+      {multiply && (
+        <style>
+          {(() => `path, line { mix-blend-mode: multiply; opacity: 0.8}`)()}
+        </style>
+      )}
       {[...Array(cols * rows).keys()].map((i) => {
         const colNumber = i % cols
         const rowNumber = Math.floor(i / cols)
@@ -63,6 +69,8 @@ const HexGrid = ({
                 i,
                 col: colNumber,
                 row: rowNumber,
+                colsCount: cols,
+                rowsCount: rows,
                 totalCount: cols * rows,
                 seed,
               })}
@@ -90,6 +98,7 @@ HexGrid.propTypes = {
   printHeight: number,
   seed: string,
   trimOddEnds: bool,
+  multiply: bool,
 }
 
 export default HexGrid

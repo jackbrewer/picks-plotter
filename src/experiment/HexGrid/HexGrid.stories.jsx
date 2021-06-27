@@ -1,11 +1,13 @@
 import React from 'react'
 
+import randomSeeded from '../../lib/random-seeded'
 import sampleSeeded from '../../lib/sample-seeded'
 import mapRange from '../../lib/map-range'
 
 import HexGrid from './'
 import Frame from '../../structure/Frame'
 
+import HatchedCircle from '../../component/HatchedCircle'
 import Hexagon from '../../component/Hexagon'
 import IsometricCube from '../../component/IsometricCube'
 import generateBinaryBytes from '../../lib/generate-binary-bytes'
@@ -16,7 +18,7 @@ export default {
 }
 
 const Template = (args) => (
-  <Frame name="HexGrid" seeded>
+  <Frame name="HexGrid" seeded refresh>
     <HexGrid {...args} />
   </Frame>
 )
@@ -185,6 +187,155 @@ Seamless.args = {
         hatchRight={hatchCount}
         hatchRightColor={sampleSeeded({ arr: c, seed: `${seed} right ${i}` })}
         // hatchRight2={hatchCount}
+      />
+    )
+  },
+}
+
+const getDensity = ({ seed, min, max }) => {
+  return Math.round(
+    mapRange({
+      value: seed,
+      min1: 0,
+      max1: 1,
+      min2: min,
+      max2: max,
+    })
+  )
+}
+export const CircleHatching = Template.bind({})
+CircleHatching.args = {
+  ...Default.args,
+  cols: 10,
+  rows: 12,
+  childFunc: ({
+    width,
+    height,
+    col,
+    row,
+    colsCount,
+    rowsCount,
+    i,
+    totalCount,
+    seed,
+  }) => {
+    const yOff = col / colsCount
+    const mOff = 1 - col / colsCount
+    const cOff = row / rowsCount
+
+    return (
+      <HatchedCircle
+        key={`point${i}`}
+        cx={width / 2}
+        cy={height / 2}
+        r={width / 2}
+        r2={width / 2}
+        rotation={mapRange({
+          value: randomSeeded(`${i}:${seed}:rotation`),
+          min1: 0,
+          max1: 1,
+          min2: 0,
+          max2: 360,
+        })}
+        strokeWidth="0.2"
+        layers={[
+          {
+            density: getDensity({
+              seed: randomSeeded(`${i}:${seed}:1`),
+              min: 5 + 10 * yOff,
+              max: 10 + 20 * yOff,
+            }),
+            color: 'yellow',
+          },
+          {
+            density: getDensity({
+              seed: randomSeeded(`${i}:${seed}:2`),
+              min: 5 + 10 * mOff,
+              max: 10 + 10 * mOff,
+            }),
+            color: 'magenta',
+          },
+          {
+            density: getDensity({
+              seed: randomSeeded(`${i}:${seed}:3`),
+              min: 5 + 10 * cOff,
+              max: 10 + 20 * cOff,
+            }),
+            color: 'cyan',
+          },
+        ]}
+      />
+    )
+  },
+}
+export const CircleHatchingAlt = Template.bind({})
+CircleHatchingAlt.args = {
+  ...Default.args,
+  printWidth: 210,
+  printHeight: 300,
+  cols: 10,
+  rows: 15,
+  multiply: true,
+  childFunc: ({
+    width,
+    height,
+    col,
+    row,
+    colsCount,
+    rowsCount,
+    i,
+    totalCount,
+    seed,
+  }) => {
+    const yOff = col / colsCount
+    const mOff = 1 - col / colsCount
+    const cOff = row / rowsCount
+
+    return (
+      <HatchedCircle
+        key={`point${i}`}
+        cx={width / 2}
+        cy={height / 2}
+        r={width}
+        r2={width / 2}
+        rotation={mapRange({
+          value: randomSeeded(`${i}:${seed}:rotation`),
+          min1: 0,
+          max1: 1,
+          min2: 0,
+          max2: 360,
+        })}
+        strokeWidth="0.3"
+        outline={false}
+        lineSkipChance={0.1}
+        lineMinOffset={0}
+        lineMaxOffset={2}
+        layers={[
+          {
+            density: getDensity({
+              seed: randomSeeded(`${i}:${seed}:1`),
+              min: 5 + 30 * yOff,
+              max: 20 + 30 * yOff,
+            }),
+            color: 'yellow',
+          },
+          {
+            density: getDensity({
+              seed: randomSeeded(`${i}:${seed}:2`),
+              min: 5 + 30 * mOff,
+              max: 20 + 30 * mOff,
+            }),
+            color: 'magenta',
+          },
+          {
+            density: getDensity({
+              seed: randomSeeded(`${i}:${seed}:3`),
+              min: 5 + 30 * cOff,
+              max: 20 + 30 * cOff,
+            }),
+            color: 'cyan',
+          },
+        ]}
       />
     )
   },
