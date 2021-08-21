@@ -18,7 +18,7 @@ const getString = ({ seed, origin, height, width }) => {
     M ${origin[0]} ${origin[1]}
     Q
       ${origin[0]} ${tension}
-      ${x} ${height * 0.9}
+      ${x} ${height * 0.98}
   `
   return { stringPath }
 }

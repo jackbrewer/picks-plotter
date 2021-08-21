@@ -3,9 +3,7 @@ import { number } from 'prop-types'
 
 import Polygon from '../../../component/Polygon'
 
-const Bow = ({ x, y, offX, offY, rot, size, ...other }) => {
-  const width = size
-  const height = size * 0.66
+const Bow = ({ x, y, offX, offY, rot, width, height, ...other }) => {
   const points = [
     [offX + 0, offY + 0],
     [offX + width, offY + height],
@@ -25,7 +23,8 @@ Bow.propTypes = {
   offX: number,
   offY: number,
   rot: number,
-  size: number,
+  width: number,
+  height: number,
 }
 
 export default Bow
