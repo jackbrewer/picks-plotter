@@ -1,0 +1,6 @@
+[build]
+  publish = "storybook-static"
+  command = "yarn build-storybook -s ./public && echo 'User-agent: *\nDisallow: /' > storybook-static/robots.txt"
+
+[build.environment]
+  YARN_VERSION = "1.12.3"
